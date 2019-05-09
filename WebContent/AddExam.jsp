@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 	<!-- some test comment-->
 
+
+<!-- This is a new comment -->
 <!DOCTYPE html>
 <html lang="en">
 
