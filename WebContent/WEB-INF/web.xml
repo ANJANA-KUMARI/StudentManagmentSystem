@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>oop_2019</display-name>
+  <servlet>
+    <servlet-name>AddStudentServlet</servlet-name>
+    <servlet-class>com.oop_2019.servlets.AddStudentServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddTeacherServlet</servlet-name>
+    <servlet-class>com.oop_2019.servlets.AddTeacherServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>AddSubjectServlet</servlet-name>
+    <servlet-class>com.oop_2019.servlets.AddSubjectServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>AddExamServlet</servlet-name>
+    <servlet-class>com.oop_2019.servlets.AddExamServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddStudentServlet</servlet-name>
+    <url-pattern>/AddStudentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddTeacherServlet</servlet-name>
+    <url-pattern>/AddTeacher</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>AddSubjectrServlet</servlet-name>
+    <url-pattern>/AddSubject</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>AddExamServlet</servlet-name>
+    <url-pattern>/AddExam</url-pattern>
+  </servlet-mapping>
+</web-app>

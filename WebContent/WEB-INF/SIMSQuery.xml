@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- by Anjana Kumari OOP SQL queries -->
+
+<Querys>
+
+	<Query-group name="create_sims_tables">
+		<!-- Create table Teacher Query -->
+		<query id="create_teacher_table">
+		<![CDATA[
+			CREATE TABLE Teacher(
+				teacherID varchar(5) NOT NULL PRIMARY KEY,
+				title varchar(4),
+				firstName varchar(20),
+				lastName varchar(20),
+				section varchar(9),
+				birthday date,
+				email varchar(30),
+				password varchar(60),	
+				phone varchar(10),
+				city varchar(10),
+				state_ varchar(10),
+				zip int,
+				gender char(1),
+				position varchar(20),
+				imageName varchar(50),
+		)
+		]]>
+		</query>
+		
+		<!-- Create table Student Query -->
+		<query id="create_student_table">
+		<![CDATA[
+			CREATE TABLE Student( 
+				studentID varchar(6) NOT NULL PRIMARY KEY,
+				firstName varchar(20),
+				lastName varchar(20),
+				section varchar(9),
+				birthday date,
+				email varchar(30),
+				phone varchar(10),
+				city varchar(10),
+				state varchar(10),
+				zip int,
+				gender char(1),
+				grade varchar(3),
+				roll INT ,
+				imageName  varchar(20),
+				CONSTRAINT FK_Student_StudentRoll FOREIGN KEY(roll) REFERENCES StudentRoll
+		)
+		]]>
+		</query>
+		
+		<!-- Create table Subject Query -->
+		<query id="create_subject_table">
+		<![CDATA[
+			CREATE TABLE Subject(
+				subjectID varchar(4) NOT NULL PRIMARY KEY,
+				name varchar(20),
+				section varchar(20),
+				subjectHead varchar(5),
+				grade varchar(3),
+				description_ varchar(100),
+				CONSTRAINT FK_Subject_Teacher FOREIGN KEY(subjectHead) REFERENCES Teacher
+		)
+		]]>
+		</query>
+		
+		<!-- Create table Exam Query -->
+		<query id="create_exam_table">
+		<![CDATA[
+			CREATE TABLE Exam(
+				examID varchar(2) NOT NULL PRIMARY KEY,
+				examName varchar(20),
+				examDate date,	
+				garde varchar(5),
+		)
+		]]>
+		</query>
+	
+		<!-- Create table StudentRoll Query -->
+		<query id="create_studentRoll_table">
+		<![CDATA[
+			CREATE TABLE StudentRoll(
+				ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				roll VARCHAR(20)
+		)
+		]]>
+		</query>
+		
+			<!-- Create table TeacherSubject Query -->
+		<query id="create_teacherSubject_table">
+		<![CDATA[
+			CREATE TABLE TeacherSubject(
+				teacherID varchar(5),
+				subjectId varchar(4),
+				CONSTRAINT PK_TeachSub PRIMARY KEY(teacherId, subjectId),
+				CONSTRAINT FK_Teach FOREIGN KEY(teacherId) REFERENCES Teacher(teacherId),
+				CONSTRAINT FK_Subj FOREIGN KEY(subjectId) REFERENCES Subject_(subjectId),
+		)
+		]]>
+		</query>
+		
+			<!-- Create table SubjectStudent Query -->
+		<query id="create_subjectStudent_table">
+		<![CDATA[
+			CREATE TABLE SubjectStudent(
+				subjectID varchar(4),
+				studentID varchar(6),
+				CONSTRAINT PK_SubStu PRIMARY KEY(subjectId, studentId),
+				CONSTRAINT FK_Subjt FOREIGN KEY(subjectId) REFERENCES Subject_(subjectId),
+				CONSTRAINT FK_Stu FOREIGN KEY(studentId) REFERENCES Student(studentId),
+		)
+		]]>
+		</query>
+		
+			<!-- Create table SubjectExam Query -->
+		<query id="create_subjectExam_table">
+	<![CDATA[
+		CREATE TABLE SubjectExam(
+			subjectID varchar(4),
+			examID varchar(2),
+			CONSTRAINT PK_SubExam PRIMARY KEY(subjectId, examId),
+			CONSTRAINT FK_Sub FOREIGN KEY(subjectId) REFERENCES Subject_(subjectId),
+			CONSTRAINT FK_exam FOREIGN KEY(examId) REFERENCES Exam(examId),
+	)
+	]]>
+	</query>
+
+			<!-- Create table teacher_position Query -->
+		<query id="create_teacher_position_table">
+			<![CDATA[
+				CREATE TABLE IF NOT EXISTS TeacherPostion(
+					teacherID varchar(5) NOT NULL PRIMARY KRY,
+					position varchar(20) NOT NULL,	
+					)	
+			]]>
+		</query>
+
+	</Query-group>
+
+	<Query-group name="drop_sims_tables">
+	
+		<!-- DROP TABLE TEACHER Query -->
+		
+		<query id="drop_table">
+			<![CDATA[
+				DROP TABLE IF EXISTS teacher
+		]]>
+		</query>
+		
+			<!-- DROP TABLE STUDENT Query -->
+		<query id="drop_table">
+			<![CDATA[
+				DROP TABLE IF EXISTS student
+		]]>
+		</query>
+		
+			<!-- DROP TABLE SUBJECT Query -->
+		<query id="drop_table">
+			<![CDATA[
+				DROP TABLE IF EXISTS subject
+		]]>
+		</query>
+		
+			<!-- DROP TABLE EXAM Query -->
+		<query id="drop_table">
+			<![CDATA[
+				DROP TABLE IF EXISTS exam
+		]]>
+		</query>
+	</Query-group>
+	
+	<Query-group name="general">
+		<!-- Select all teacher Query -->
+		<query id="insert_teacher">
+			<![CDATA[
+				INSERT INTO teacher (teacherID, title, firstName, lastName, section, birthday, email, password, phone, city, state, zip, gender, position, imageName)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+			]]>
+		</query>
+		
+			<!-- Select all student Query -->
+		<query id="insert_student">
+			<![CDATA[
+				INSERT INTO student (studentID, firstName, lastName, section, birthday, email, phone, city, state, zip, gender, grade, roll, imageName)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+			]]>
+		</query>
+		
+			<!-- Select all subject Query -->
+		<query id="insert_subject">
+			<![CDATA[
+				INSERT INTO subject (subjectID, name, section, subjectHead, grade, description)
+				VALUES (?, ?, ?, ?, ?, ?)
+			]]>
+		</query>
+		
+			<!-- Select all exam Query -->
+		<query id="insert_exam">
+			<![CDATA[
+				INSERT INTO exam (examID, examName, examDate, grade)
+				VALUES (?, ?, ?, ?)
+			]]>
+		</query>
+			<!-- insert teacher_postion Query -->
+		<query id="insert_teacher_position">
+			<![CDATA[
+				INSERT INTO TeacherPosition VALUES (1, 'Teacher'), (2, 'Class Administrator'), (3, 'Subject Administrator'), (4, 'Principle')
+			]]>
+		</query>
+		
+	</Query-group>
+	
+	<Query-group name="general">	
+		<!-- Select a particular teacher by id Query -->
+		<query id="teacher_by_id">
+			<![CDATA[
+				SELECT * 
+				FROM teacher 
+				WHERE teacher.teacher.teacherID = ?
+			]]>
+		</query>
+		
+			<!-- Select a particular student by id Query -->
+		<query id="student_by_id">
+			<![CDATA[
+				SELECT * 
+				FROM student 
+				WHERE student.student.studentID = ?
+			]]>
+		</query>
+		
+			<!-- Select a particular subject by id Query -->
+		<query id="subject_by_id">
+			<![CDATA[
+				SELECT * 
+				FROM subject 
+				WHERE subject.subject.subjectID = ?
+			]]>
+		</query>
+		
+			<!-- Select a particular exam by id Query -->
+		<query id="exam_by_id">
+			<![CDATA[
+				SELECT * 
+				FROM exam 
+				WHERE exam.exam.examID = ?
+			]]>
+		</query>
+	
+	</Query-group>	
+		
+	<Query-group name="general">	
+		<!-- Select all teachers -->
+		<query id="all_teachers">
+			<![CDATA[
+				SELECT *
+				FROM teacher
+			]]>
+		</query>
+		
+			<!-- Select all students -->
+		<query id="all_students">
+			<![CDATA[
+				SELECT *
+				FROM student
+			]]>
+		</query>
+		
+			<!-- Select all subjects -->
+		<query id="all_subjects">
+			<![CDATA[
+				SELECT *
+				FROM subject
+			]]>
+		</query>
+		
+			<!-- Select all exams -->
+		<query id="all_exams">
+			<![CDATA[
+				SELECT *
+				FROM exam
+			]]>
+		</query>
+		
+	</Query-group>	
+		
+	<Query-group name="general">	
+		<!-- Delete a particular teacher by id Query -->
+		<query id="remove_teacher">
+			<![CDATA[
+				DELETE FROM teacher WHERE teacher.teacherID = ?
+			]]>
+		</query>
+		
+			<!-- Delete a particular student by id Query -->
+		<query id="remove_student">
+			<![CDATA[
+				DELETE FROM student WHERE student.studentID = ?
+			]]>
+		</query>
+		
+			<!-- Delete a particular subject by id Query -->
+		<query id="remove_subject">
+			<![CDATA[
+				DELETE FROM subject WHERE subject.subjectID = ?
+			]]>
+		</query>
+		
+			<!-- Delete a particular exam by id Query -->
+		<query id="remove_exam">
+			<![CDATA[
+				DELETE FROM exam WHERE exam.examID = ?
+			]]>
+		</query>
+		
+	</Query-group>	
+		
+	<Query-group name="update_sims_tables">	
+		<!-- Update a particular teacher by id Query -->
+		<query id="update_teacher">
+			<![CDATA[
+				UPDATE teacher AS t
+				SET t.title = ?, t.firstName = ?, t.lastName = ?, t.section = ?, t.birthday = ?, t.email = ?, t.password = ?, t.phone = ?, t.city = ?, t.state = ?, t.zip = ?, t.gender = ?, t.position, t.imageName = ?
+				WHERE t.teacherID = ?
+			]]>
+		</query>
+		
+			<!-- Update a particular student by id Query -->
+		<query id="update_student">
+			<![CDATA[
+				UPDATE student AS s
+				SET s.firstName = ?, s.lastName = ?, s.section = ?, s.birthday = ?, s.email = ?, s.phone = ?, s.city = ?, s.state = ?, s.zip = ?, s.gender = ?, s.grade, s.roll, s.imageNam = ?
+				WHERE s.studentID = ?
+			]]>
+		</query>
+		
+			<!-- Update a particular subject by id Query -->
+		<query id="update_subject">
+			<![CDATA[
+				UPDATE subject AS sub
+				SET sub.name = ?, sub.section = ?, sub.subjectHead = ?, sub.grade, sub.description = ?
+				WHERE sub.subjectID = ?
+			]]>
+		</query>
+		
+			<!-- Update a particular exam by id Query -->
+		<query id="update_exam">
+			<![CDATA[
+				UPDATE exam AS e
+				SET e.examName = ?, e.examDate = ?, e.grade = ?
+				WHERE e.examID = ?
+			]]>
+		</query>
+		
+	</Query-group>
+		
+	<Query-group name="general">	
+		<!-- Get teacher IDs Query -->
+		<query id="teacher_ids">
+			<![CDATA[
+				SELECT t.teacherID
+				FROM teacher 
+				AS t
+			]]>
+		</query>
+		
+			<!-- Get student IDs Query -->
+		<query id="student_ids">
+			<![CDATA[
+				SELECT s.studentID
+				FROM student 
+				AS s
+			]]>
+		</query>
+		
+			<!-- Get subject IDs Query -->
+		<query id="subject_ids">
+			<![CDATA[
+				SELECT sub.subjectID
+				FROM subject 
+				AS sub
+			]]>
+		</query>
+		
+			<!-- Get exam IDs Query -->
+		<query id="exam_ids">
+		<![CDATA[
+			SELECT e.examID
+			FROM exam
+			AS e
+		]]>
+	</query>
+	
+			<!-- select_teacher_admin_count Query -->
+		<query id="admin_count">
+			<![CDATA[
+				SELECT COUNT(*)
+				FROM Teacher
+				WHERE teacher_position_id = 1
+			]]>	
+		</query>
+		
+			<!-- select_teacher_email_pwd Query -->
+		<query id="admin_email_pwd">
+			<![CDATA[
+				SELECT *
+				FROM Tacher
+				WHERE email = ? AND password = ?
+			]]>
+		</query>
+
+	</Query-group>
+	
+	
+	
+
+</Querys>
