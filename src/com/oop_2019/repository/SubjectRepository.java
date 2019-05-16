@@ -24,7 +24,7 @@ public class SubjectRepository extends RepositoryBase implements IRepository<Sub
 	}
 
 	@Override
-	public void delete(Subject entity) {
+	public void delete(Object id) {
 		// TODO Auto-generated method stub
 		
 	}

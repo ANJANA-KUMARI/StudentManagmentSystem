@@ -23,7 +23,7 @@ public class StudentRepository extends RepositoryBase implements IRepository<Stu
 	}
 
 	@Override
-	public void delete(Student entity) {
+	public void delete(Object id) {
 		// TODO Auto-generated method stub
 		
 	}

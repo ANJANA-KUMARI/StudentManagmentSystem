@@ -1,58 +1,50 @@
 package com.oop_2019.servlets;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.oop_2019.commands.AddTeacherCommand;
+import com.oop_2019.commands.DeleteTeacherCommand;
 import com.oop_2019.commands.ICommand;
-import com.oop_2019.models.Teacher;
-import com.oop_2019.services.ITeacherService;
-import com.oop_2019.services.TeacherService;
 
 /**
- * Servlet implementation class AddTeacherServlet
+ * Servlet implementation class DeleteTeacherServlet
  */
-
-// @WebServlet("/AddTeacherServlet") 
-public class AddTeacherServlet extends HttpServlet {
+@WebServlet("/DeleteTeacherServlet")
+public class DeleteTeacherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddTeacherServlet() {
+    public DeleteTeacherServlet() {
         super();
-
+        // TODO Auto-generated constructor stub
     }
 
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		ICommand<Boolean> command = new DeleteTeacherCommand();
 		
-		ICommand<Boolean> command = new AddTeacherCommand();
+		Boolean deleteStatus = command.execute(request, response);
 		
-		Boolean addStatus = command.execute(request, response);
-		
-		if(addStatus) {
+		if(deleteStatus) {
 			// TODO redirect to TeacherList
 		}else {
-			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AddTeacher.jsp");
+			request.setAttribute("error_msg", "Failed to delete the teacher!");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/TeacherList.jsp");
 			dispatcher.forward(request, response);
 		}
-	
-		
 	}
 
 }

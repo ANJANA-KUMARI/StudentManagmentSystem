@@ -108,6 +108,10 @@ public class CommonConstants {
 	/** Constant for query id of get a teacher in SIMSQuery.xml */
 	public static final String QUERY_ID_GET_TEACHER = "teacher_by_id";
 	
+	/** Constant for query id of get a teacher in SIMSQuery.xml */
+	public static final String QUERY_ID_GET_TEACHER_BY_EMAIL = "teacher_by_email";
+	
+	
 	/** Constant for query id of get a student in SIMSQuery.xml */
 	public static final String QUERY_ID_GET_STUDENT = "student_by_id";
 	
@@ -215,5 +219,9 @@ public class CommonConstants {
 	
 	/** Constant for Column index fiveteen */
 	public static final int COLUMN_INDEX_FIVETEEN = 15;
+	
+
+	/** Constant for Column index fiveteen */
+	public static final String SESSION_ID_LOGGED_IN_TEACHER = "logged_in_teacher";
 	
 }
