@@ -55,4 +55,11 @@ public interface ITeacherService {
 	 */
 	
 	public void removeTeacher(String teacherID);
+	
+	/**
+	 * @param email
+	 * @param password
+	 */
+	
+	public boolean loginTeacher(String email, String password);
 }
