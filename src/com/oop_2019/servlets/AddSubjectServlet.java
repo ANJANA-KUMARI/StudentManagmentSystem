@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oop_2019.commands.AddSubjectCommand;
+import com.oop_2019.commands.ICommand;
 import com.oop_2019.models.Subject;
 import com.oop_2019.services.ISubjectService;
 import com.oop_2019.services.SubjectService;
@@ -40,42 +42,18 @@ public class AddSubjectServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String subjectNameValue = request.getParameter("subjectName");
-		if(subjectNameValue.length() == 0) {
-			// Error
+		ICommand<Boolean> command = new AddSubjectCommand();
+		
+		if(command.execute(request, response)) {
+			// TODO redirect to subject list
+			response.sendRedirect("");
+		}else {
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListEmployees.jsp");
+			dispatcher.forward(request, response);
 		}
 		
-		String sectionValue = request.getParameter("section");
-		if(sectionValue.length() == 0) {
-			// Error
-		}
 		
-//		Teacher subjectHeadValue = request.getParameter("subjectHead");
-	//	if(subjectHeadValue.length() == 0) {
-			// Error
-		//}
-		
-		String gradeValue = request.getParameter("grade");
-		if(gradeValue.length() == 0) {
-			// Error
-		}
-		
-		String descriptionValue = request.getParameter("description");
-		
-		Subject newSubject = new Subject();
-		
-		newSubject.setSubjectName(subjectNameValue);
-		newSubject.setSection(sectionValue);
-		//newSubject.setSubjectHead(subjectHeadValue);
-		newSubject.setGrade(gradeValue);
-		newSubject.setDescription(descriptionValue);
-		
-		ISubjectService subjectService = new SubjectService();
-		subjectService.addSubject(newSubject);
-		
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListEmployees.jsp");
-		dispatcher.forward(request, response);
 	}
 
 }

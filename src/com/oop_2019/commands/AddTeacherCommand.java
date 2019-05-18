@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.oop_2019.models.Teacher;
+import com.oop_2019.services.ISubjectService;
 import com.oop_2019.services.ITeacherService;
+import com.oop_2019.services.SubjectService;
 import com.oop_2019.services.TeacherService;
 
 /**
@@ -103,6 +105,7 @@ public class AddTeacherCommand implements ICommand<Boolean> {
 		Teacher newTeacher = new Teacher(null);
 		
 		if(errorMsgs.size() > 0) {
+			request.setAttribute("errorMsgs", errorMsgs);
 			return false;
 		}
 		
@@ -111,9 +114,7 @@ public class AddTeacherCommand implements ICommand<Boolean> {
 		newTeacher.setLastName(lastNameValue);
 		newTeacher.setSection(sectionValue);
 		newTeacher.setBirthday(birthdayDateValue);
-		newTeacher.setEmail(emailValue);
-		newTeacher.setPassword(passwordValue);
-		newTeacher.setRepeatPassword(repeatPasswordValue);
+		newTeacher.setEmail(emailValue);		
 		newTeacher.setPhone(phoneNumberValue);
 		newTeacher.setCity(cityValue);
 		newTeacher.setState(stateValue);
@@ -126,6 +127,14 @@ public class AddTeacherCommand implements ICommand<Boolean> {
 		teacherService.addTeacher(newTeacher, passwordValue);
 		
 		
+		// add subjects 
+		String[] subjectIds = request.getParameter("subjectIds").split(",");
+		
+		ISubjectService subjectService = new SubjectService();
+		
+		for (String id : subjectIds) {
+			subjectService.addSubjectToTeacher(Integer.parseInt(id), newTeacher.getId());
+		}
 	
 		return true;
 	}

@@ -9,42 +9,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oop_2019.commands.AddTeacherCommand;
-import com.oop_2019.commands.DeleteTeacherCommand;
 import com.oop_2019.commands.ICommand;
+import com.oop_2019.commands.UpdateStudentCommand;
+import com.oop_2019.commands.UpdateSubjectCommand;
 
 /**
- * Servlet implementation class DeleteTeacherServlet
+ * Servlet implementation class UpdateSubjectServlet
  */
-@WebServlet("/DeleteTeacherServlet")
-public class DeleteTeacherServlet extends HttpServlet {
+@WebServlet("/UpdateSubjectServlet")
+public class UpdateSubjectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteTeacherServlet() {
+    public UpdateSubjectServlet() {
         super();
 
     }
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		ICommand<Boolean> command = new DeleteTeacherCommand();
+		ICommand<Boolean> command = new UpdateSubjectCommand();
 		
-		Boolean deleteStatus = command.execute(request, response);
-		
-		if(deleteStatus) {
-			// TODO redirect to TeacherList
+		if(command.execute(request, response)) {
+			// TODO 
 			response.sendRedirect("");
 		}else {
-			request.setAttribute("error_msg", "Failed to delete the teacher!");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/TeacherList.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/UpdateSubject.jsp");
 			dispatcher.forward(request, response);
+		
 		}
 	}
 

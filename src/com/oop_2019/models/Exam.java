@@ -4,10 +4,19 @@ import java.util.Date;
 
 public class Exam {
 
+		private int id;
 		private String examName;
 		private Date examDate;
 		private Subject subject;
 		private String grade;
+		
+		public int getId() {
+			return this.id;
+		}
+		
+		public void setId(int id) {
+			this.id = id;
+		}
 		
 		public String getExamName() {
 			return examName;

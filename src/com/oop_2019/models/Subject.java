@@ -2,11 +2,19 @@ package com.oop_2019.models;
 
 public class Subject {
 
+	private int id;
 	private String subjectName;
 	private String section;
 	private Teacher subjectHead;
-	private String grade;
 	private String description;
+	
+	public Subject(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return this.id;
+	}
 	
 	public String getSubjectName() {
 		return subjectName;
@@ -26,12 +34,7 @@ public class Subject {
 	public void setSubjectHead(Teacher subjectHeadValue) {
 		this.subjectHead = subjectHeadValue;
 	}
-	public String getGrade() {
-		return grade;
-	}
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
+	
 	public String getDescription() {
 		return description;
 	}

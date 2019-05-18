@@ -57,10 +57,9 @@
 				subjectID varchar(4) NOT NULL PRIMARY KEY,
 				name varchar(20),
 				section varchar(20),
-				subjectHead varchar(5),
-				grade varchar(3),
+				subjectHead varchar(5),				
 				description_ varchar(100),
-				CONSTRAINT FK_Subject_Teacher FOREIGN KEY(subjectHead) REFERENCES Teacher
+				CONSTRAINT FK_Subject_Teacher FOREIGN KEY(subjectHead) REFERENCES Teacher(teacherId)
 		)
 		]]>
 		</query>
@@ -69,10 +68,10 @@
 		<query id="create_exam_table">
 		<![CDATA[
 			CREATE TABLE Exam(
-				examID varchar(2) NOT NULL PRIMARY KEY,
+				examID INT NOT NULL PRIMARY KEY,
 				examName varchar(20),
 				examDate date,	
-				garde varchar(5),
+				grade varchar(5),
 		)
 		]]>
 		</query>
@@ -95,7 +94,7 @@
 				subjectId varchar(4),
 				CONSTRAINT PK_TeachSub PRIMARY KEY(teacherId, subjectId),
 				CONSTRAINT FK_Teach FOREIGN KEY(teacherId) REFERENCES Teacher(teacherId),
-				CONSTRAINT FK_Subj FOREIGN KEY(subjectId) REFERENCES Subject_(subjectId),
+				CONSTRAINT FK_Subj FOREIGN KEY(subjectId) REFERENCES Subject(subjectId),
 		)
 		]]>
 		</query>
@@ -107,7 +106,7 @@
 				subjectID varchar(4),
 				studentID varchar(6),
 				CONSTRAINT PK_SubStu PRIMARY KEY(subjectId, studentId),
-				CONSTRAINT FK_Subjt FOREIGN KEY(subjectId) REFERENCES Subject_(subjectId),
+				CONSTRAINT FK_Subjt FOREIGN KEY(subjectId) REFERENCES Subject(subjectId),
 				CONSTRAINT FK_Stu FOREIGN KEY(studentId) REFERENCES Student(studentId),
 		)
 		]]>
@@ -118,9 +117,9 @@
 	<![CDATA[
 		CREATE TABLE SubjectExam(
 			subjectID varchar(4),
-			examID varchar(2),
+			examID INT,
 			CONSTRAINT PK_SubExam PRIMARY KEY(subjectId, examId),
-			CONSTRAINT FK_Sub FOREIGN KEY(subjectId) REFERENCES Subject_(subjectId),
+			CONSTRAINT FK_Sub FOREIGN KEY(subjectId) REFERENCES Subject(subjectId),
 			CONSTRAINT FK_exam FOREIGN KEY(examId) REFERENCES Exam(examId),
 	)
 	]]>
@@ -129,9 +128,21 @@
 			<!-- Create table teacher_position Query -->
 		<query id="create_teacher_position_table">
 			<![CDATA[
+				CREATE TABLE IF NOT EXISTS Postion(
+					id       INT NOT NULL PRIMARY KRY,
+					position varchar(20) NOT NULL,	
+					)	
+			]]>
+		</query>
+		
+					<!-- Create table teacher_position Query -->
+		<query id="create_teacher_position_table">
+			<![CDATA[
 				CREATE TABLE IF NOT EXISTS TeacherPostion(
 					teacherID varchar(5) NOT NULL PRIMARY KRY,
-					position varchar(20) NOT NULL,	
+					position INT NOT NULL,	
+					CONSTRAINT PK_TeacherPosition PRIMARY KEY(teacherID, position),
+					CONSTRAINT FK_Pos FOREIGN KEY(position) REFERENCES Position(id),
 					)	
 			]]>
 		</query>
@@ -190,7 +201,7 @@
 			<!-- Select all subject Query -->
 		<query id="insert_subject">
 			<![CDATA[
-				INSERT INTO subject (subjectID, name, section, subjectHead, grade, description)
+				INSERT INTO subject (subjectID, name, section, subjectHead, description)
 				VALUES (?, ?, ?, ?, ?, ?)
 			]]>
 		</query>
@@ -209,9 +220,25 @@
 			]]>
 		</query>
 		
-	</Query-group>
-	
-	<Query-group name="general">	
+		<query id="insert_subject_student">
+			<![CDATA[
+				INSERT INTO SubjectStudent VALUES (?, ?) 
+			]]>
+		</query>
+
+		<query id="insert_subject_teacher">
+			<![CDATA[
+				INSERT INTO SubjectTeacher VALUES (?, ?) 
+			]]>
+		</query>
+		
+		<query id="insert_subject_exam">
+			<![CDATA[
+				INSERT INTO SubjectExam VALUES (?, ?) 
+			]]>
+		</query>
+		
+
 		<!-- Select a particular teacher by id Query -->
 		<query id="teacher_by_id">
 			<![CDATA[
@@ -248,9 +275,7 @@
 			]]>
 		</query>
 	
-	</Query-group>	
-		
-	<Query-group name="general">	
+	
 		<!-- Select all teachers -->
 		<query id="all_teachers">
 			<![CDATA[
@@ -282,10 +307,24 @@
 				FROM exam
 			]]>
 		</query>
+
+			<!-- Select all exams -->
+		<query id="teacher_ids">
+			<![CDATA[
+				SELECT teacherID
+				FROM teacher
+			]]>
+		</query>
 		
-	</Query-group>	
+			<!-- Select all exams -->
+		<query id="student_ids">
+			<![CDATA[
+				SELECT studentID
+				FROM student
+			]]>
+		</query>
 		
-	<Query-group name="general">	
+		
 		<!-- Delete a particular teacher by id Query -->
 		<query id="remove_teacher">
 			<![CDATA[
@@ -314,14 +353,13 @@
 			]]>
 		</query>
 		
-	</Query-group>	
-		
-	<Query-group name="update_sims_tables">	
+
+	
 		<!-- Update a particular teacher by id Query -->
 		<query id="update_teacher">
 			<![CDATA[
 				UPDATE teacher AS t
-				SET t.title = ?, t.firstName = ?, t.lastName = ?, t.section = ?, t.birthday = ?, t.email = ?, t.password = ?, t.phone = ?, t.city = ?, t.state = ?, t.zip = ?, t.gender = ?, t.position, t.imageName = ?
+				SET t.title = ?, t.firstName = ?, t.lastName = ?, t.section = ?, t.birthday = ?, t.email = ?, t.phone = ?, t.city = ?, t.state = ?, t.zip = ?, t.gender = ?, t.position, t.imageName = ?
 				WHERE t.teacherID = ?
 			]]>
 		</query>
@@ -339,7 +377,7 @@
 		<query id="update_subject">
 			<![CDATA[
 				UPDATE subject AS sub
-				SET sub.name = ?, sub.section = ?, sub.subjectHead = ?, sub.grade, sub.description = ?
+				SET sub.name = ?, sub.section = ?, sub.subjectHead = ?,  sub.description = ?
 				WHERE sub.subjectID = ?
 			]]>
 		</query>
@@ -352,10 +390,7 @@
 				WHERE e.examID = ?
 			]]>
 		</query>
-		
-	</Query-group>
-		
-	<Query-group name="general">	
+	
 		<!-- Get teacher IDs Query -->
 		<query id="teacher_ids">
 			<![CDATA[
@@ -405,8 +440,41 @@
 		<query id="admin_email_pwd">
 			<![CDATA[
 				SELECT *
-				FROM Tacher
+				FROM Teacher
 				WHERE email = ? AND password = ?
+			]]>
+		</query>
+		
+		
+			<!-- select_teacher_email_pwd Query -->
+		<query id="subject_of_student">
+			<![CDATA[
+				SELECT sub.subjectId, sub.name, sub.section, sub.subjectHead, sub.description
+				FROM subject sub,  SubjectStudent ss
+				WHERE ss.studentID = ?
+				AND sub.subjectId = ss.subjectID
+			]]>
+		</query>
+		
+		
+			<!-- select_teacher_email_pwd Query -->
+		<query id="subject_of_teacher">
+			<![CDATA[
+					SELECT sub.subjectId, sub.name, sub.section, sub.subjectHead, sub.description
+				FROM subject sub,  SubjectTeacher ss
+				WHERE ss.teacherId = ?
+				AND sub.subjectId = ss.subjectId
+			]]>
+		</query>
+		
+		
+			<!-- select_teacher_email_pwd Query -->
+		<query id="subject_of_exam">
+			<![CDATA[
+		SELECT sub.subjectId, sub.name, sub.section, sub.subjectHead, sub.description
+				FROM subject sub,  SubjectExam ss
+				WHERE ss.examID = ?
+				AND sub.subjectId = ss.subjectID
 			]]>
 		</query>
 

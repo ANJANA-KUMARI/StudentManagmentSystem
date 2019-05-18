@@ -46,6 +46,7 @@ public class AddTeacherServlet extends HttpServlet {
 		
 		if(addStatus) {
 			// TODO redirect to TeacherList
+			response.sendRedirect("");
 		}else {
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AddTeacher.jsp");

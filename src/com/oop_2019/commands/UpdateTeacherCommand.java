@@ -106,6 +106,7 @@ public class UpdateTeacherCommand implements ICommand<Boolean> {
 		Teacher teacher = new Teacher(teacherId);
 		
 		if(errorMsgs.size() > 0) {
+			request.setAttribute("errorMsgs", errorMsgs);
 			return false;
 		}
 		
@@ -115,9 +116,7 @@ public class UpdateTeacherCommand implements ICommand<Boolean> {
 		teacher.setLastName(lastNameValue);
 		teacher.setSection(sectionValue);
 		teacher.setBirthday(birthdayDateValue);
-		teacher.setEmail(emailValue);
-		teacher.setPassword(passwordValue);
-		teacher.setRepeatPassword(repeatPasswordValue);
+		teacher.setEmail(emailValue);		
 		teacher.setPhone(phoneNumberValue);
 		teacher.setCity(cityValue);
 		teacher.setState(stateValue);
