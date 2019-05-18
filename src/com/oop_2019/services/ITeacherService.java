@@ -9,17 +9,17 @@ public interface ITeacherService {
 
 
 	
-	// me okkom teachers lav ganna method eka malu meka call kalam teacher list ekak enaw malu
+
 	ArrayList<Teacher> getAllTeachers();
 	
-	public static final Logger log = Logger.getLogger(ITeacherService.class.getName(), null);
+
 	
 	/**
 	 * Add teachers for teacher table
 	 * @param teacher
 	 */
 	
-	public void addTeacher(Teacher teacher);
+	public void addTeacher(Teacher teacher, String password);
 	
 	/**
 	 * Get a particular Teacher
@@ -30,13 +30,7 @@ public interface ITeacherService {
 	
 	public Teacher getTeacherByID(String teacherID);
 	
-	/**
-	 * Get all list of teachers
-	 * 
-	 * @return ArrayList<Teacher>
-	 */
 	
-	public ArrayList<Teacher> getTeachers();
 	
 	/**
 	 * Update existing teacher
@@ -46,7 +40,7 @@ public interface ITeacherService {
 	 * @return
 	 */
 	
-	public Teacher updateTeacher(String teacherID, Teacher teacher);
+	public void updateTeacher( Teacher teacher);
 	
 	/**
 	 * Remove existing teacher
@@ -61,5 +55,5 @@ public interface ITeacherService {
 	 * @param password
 	 */
 	
-	public boolean loginTeacher(String email, String password);
+	public Teacher loginTeacher(String email, String password);
 }

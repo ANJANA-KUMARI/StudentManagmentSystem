@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Anjana
  *
  */
-public interface ICommand {
+public interface ICommand<T> {
 	
-		String execute(HttpServletRequest request, HttpServletResponse response);
+		T execute(HttpServletRequest request, HttpServletResponse response);
 		
 }

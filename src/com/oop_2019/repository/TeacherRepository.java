@@ -118,7 +118,7 @@ public class TeacherRepository extends RepositoryBase implements ITeacherReposit
 	 */
 
 	@Override
-	public void delete(Teacher entity) {
+	public void delete(Object id) {
 		
 		try {
 			openDBConnection();
@@ -126,7 +126,7 @@ public class TeacherRepository extends RepositoryBase implements ITeacherReposit
 			preparedStatement = dbConnection.prepareStatement (
 					QueryUtil.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_ID_REMOVE_TEACHER));
 			
-			preparedStatement.setString(1, entity.getTeacherID());
+			preparedStatement.setString(1, id.toString());
 			
 			preparedStatement.executeUpdate();					
 		} catch (ClassNotFoundException | SQLException e) {
@@ -282,6 +282,35 @@ public class TeacherRepository extends RepositoryBase implements ITeacherReposit
 	public void create(Teacher entity, String password) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Teacher get(String email) {
+			Teacher teacher = null;
+			
+			try {
+				openDBConnection();
+				
+				preparedStatement = dbConnection.prepareStatement(QueryUtil.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_ID_GET_TEACHER_BY_EMAIL));
+				
+				preparedStatement.setString(1, email);
+				
+				ResultSet results = preparedStatement.executeQuery();
+				
+				results.next();
+				
+				teacher = ModelUtil.getTeacherFromSQLResult(results);
+				
+			} catch (ClassNotFoundException | SQLException e) {
+				
+				log.severe(e.getMessage());
+				
+				e.printStackTrace();
+			} finally {
+				releaseResources();
+			}
+			
+			return teacher;
 	}
 
 	

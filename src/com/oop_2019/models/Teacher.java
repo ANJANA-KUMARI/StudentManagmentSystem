@@ -21,13 +21,14 @@ public class Teacher {
 	private String position;
 	private String image;
 	
+	public Teacher(String id) {
+		this.teacherID = id;
+	}
+	
 	public String getTeacherID() {
 		return teacherID;
 	}
 
-	public void setTeacherID(String teacherID) {
-		this.teacherID = teacherID;
-	}
 	
 	public String getTitle() {
 		return title;

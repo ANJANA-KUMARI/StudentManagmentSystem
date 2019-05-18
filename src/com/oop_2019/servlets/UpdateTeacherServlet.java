@@ -1,46 +1,40 @@
 package com.oop_2019.servlets;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.oop_2019.commands.AddTeacherCommand;
 import com.oop_2019.commands.ICommand;
-import com.oop_2019.models.Teacher;
-import com.oop_2019.services.ITeacherService;
-import com.oop_2019.services.TeacherService;
+import com.oop_2019.commands.UpdateTeacherCommand;
 
 /**
- * Servlet implementation class AddTeacherServlet
+ * Servlet implementation class UpdateTeacherServlet
  */
-
-// @WebServlet("/AddTeacherServlet") 
-public class AddTeacherServlet extends HttpServlet {
+@WebServlet("/UpdateTeacherServlet")
+public class UpdateTeacherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddTeacherServlet() {
+    public UpdateTeacherServlet() {
         super();
-
+        
     }
 
 	
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ICommand<Boolean> command = new AddTeacherCommand();
+
+		ICommand<Boolean> command = new UpdateTeacherCommand();
 		
 		Boolean addStatus = command.execute(request, response);
 		
@@ -48,11 +42,10 @@ public class AddTeacherServlet extends HttpServlet {
 			// TODO redirect to TeacherList
 		}else {
 			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AddTeacher.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/UpdateTeacher.jsp");
 			dispatcher.forward(request, response);
 		}
 	
-		
 	}
 
 }

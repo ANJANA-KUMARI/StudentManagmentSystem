@@ -28,9 +28,9 @@ public class ModelUtil {
 	 */
 	
 	public static Teacher getTeacherFromSQLResult(ResultSet result) throws SQLException {
-		Teacher teacher = new Teacher();
+		Teacher teacher = new Teacher(result.getString(1));
 		
-		teacher.setTeacherID(result.getString(1));
+		
 		teacher.setFirstName(result.getString(2));
 		teacher.setLastName(result.getString(3));
 		teacher.setSection(result.getString(4));

@@ -18,7 +18,7 @@ public class ExamRepository extends RepositoryBase implements IRepository<Exam> 
 	}
 
 	@Override
-	public void delete(Exam entity) {
+	public void delete(Object id) {
 		// TODO Auto-generated method stub
 		
 	}
