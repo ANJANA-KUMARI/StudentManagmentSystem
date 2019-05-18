@@ -59,7 +59,7 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800 text-center">Add Exam</h1>
                     <br>
-                    <form>
+                    <form name="examForm" class="user" method="POST" onsubmit="return validateForm()">
                       <div class="form-row align-items-center mb-2">
                           <div>
                              <label class="mr-sm-2" for="inlineFormCustomSelect" style="font-weight: bold;">Exam Name</label>
@@ -140,6 +140,9 @@
 
 		<!-- Custom scripts for all pages-->
 		<script src="js/sb-admin-2.min.js"></script>
+		
+		<!-- JS Form Validation -->
+		<script src="js/validation.js"></script>
 </body>
 
 </html>

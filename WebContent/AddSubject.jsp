@@ -57,7 +57,7 @@
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800 text-center">Add Subject</h1>
             <br>
-            <form>
+            <form name="subjectForm" class="user" method="POST" onsubmit="return validateForm()">
               <div class="form-row align-items-center mb-3">
                   <div>
                      <label class="mr-sm-2" for="inlineFormCustomSelect" style="font-weight: bold;">Subject Name</label>
@@ -75,7 +75,7 @@
                         <option selected>Choose...</option>
                           <option value="1">Lakmal</option>
                           <option value="2">Nuwan</option>
-                          <option value="3">Brawo</option>
+                          <option value="3">Anne</option>
                       </select>
                    </div>
 
@@ -132,6 +132,9 @@
 
 		<!-- Custom scripts for all pages-->
 		<script src="js/sb-admin-2.min.js"></script>
+		
+		<!-- JS Form Validation -->
+		<script src="js/validation.js"></script>
 </body>
 
 </html>
