@@ -56,15 +56,14 @@
 
 					<div class="card o-hidden border-0 shadow-lg my-5">
 						<div class="card-body p-0">
-							<!-- Nested Row within Card Body -->
-							<!-- <div class="row"> -->
-							<!-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-          <div class="col-lg-7"> -->
+							
 							<div class="p-5">
 								<div class="text-center">
 									<h1 class="h4 text-gray-900 mb-4">Add Student</h1>
 								</div>
-								<form class="user" method="POST" action="AddStudent">
+
+								<form class="user" method="POST" action="AddStudent"  onsubmit="return validateForm()">
+
 									<div class="form-group">
 										<div class="col-sm-4 mb-3">
 											<label style="font-weight: bold;">First Name</label> <input
@@ -77,12 +76,6 @@
 												name="lastName" placeholder="Last Name">
 										</div>
 
-										<div class="form-group">
-											<div class="col-sm-4">
-												<label style="font-weight: bold;">Section</label> <input
-													type="text" class="form-control form-control-user"
-													name="section" placeholder="Section">
-											</div>
 											<div class="col-sm-4 my-3">
 												<label style="font-weight: bold;">BirthDay</label> <input
 													type="date" class="form-control form-control-user"
@@ -214,6 +207,9 @@
 
 		<!-- Custom scripts for all pages-->
 		<script src="js/sb-admin-2.min.js"></script>
+		
+		<!-- JS Form Validation -->
+		<script src="js/validation.js"></script>
 </body>
 
 </html>

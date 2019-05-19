@@ -32,7 +32,8 @@
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Add Teacher</h1>
                     </div>
-                    <form class="user" method="POST" action="AddTeacher">
+
+                    <form class="user" method="POST" action="AddTeacher" onsubmit="return validateForm()">
 
                         <div class="col-sm-2 my-3">
                             <label style="font-weight: bold;">Title</label>
@@ -185,6 +186,9 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
+	
+	<!-- JS Form Validation -->
+	<script src="js/validation.js"></script>
 </body>
 
 </html>

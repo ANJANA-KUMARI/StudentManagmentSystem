@@ -99,13 +99,13 @@ public class CommonConstants {
 	/** Constant for query id of insert subject in SIMSQuery.xml */
 	public static final String QUERY_ID_INSERT_SUBJECT = "insert_subject";
 	
-	/** Constant for query id of insert subject in SIMSQuery.xml */
+	/** Constant for query id of insert student subject in SIMSQuery.xml */
 	public static final String QUERY_ID_INSERT_SUBJECT_STUDENT = "insert_subject_student";
 	
-	/** Constant for query id of insert subject in SIMSQuery.xml */
+	/** Constant for query id of insert teacher subject in SIMSQuery.xml */
 	public static final String QUERY_ID_INSERT_SUBJECT_TEACHER = "insert_subject_teacher";
 	
-	/** Constant for query id of insert subject in SIMSQuery.xml */
+	/** Constant for query id of insert exam subject in SIMSQuery.xml */
 	public static final String QUERY_ID_INSERT_SUBJECT_EXAM = "insert_subject_exam";
 	
 	/** Constant for query id of insert exam in SIMSQuery.xml */
@@ -117,13 +117,13 @@ public class CommonConstants {
 	/** Constant for query id of get a teacher in SIMSQuery.xml */
 	public static final String QUERY_ID_GET_TEACHER = "teacher_by_id";
 	
-	/** Constant for query id of get a teacher in SIMSQuery.xml */
+	/** Constant for query id of get teachers in SIMSQuery.xml */
 	public static final String QUERY_ID_GET_TEACHER_IDS = "teacher_ids";
 	
-	/** Constant for query id of get a teacher in SIMSQuery.xml */
+	/** Constant for query id of get students in SIMSQuery.xml */
 	public static final String QUERY_ID_GET_STUDENT_IDS = "student_ids";
 	
-	/** Constant for query id of get a teacher in SIMSQuery.xml */
+	/** Constant for query get teacher email in SIMSQuery.xml */
 	public static final String QUERY_ID_GET_TEACHER_BY_EMAIL = "teacher_by_email";
 	
 	
@@ -139,13 +139,13 @@ public class CommonConstants {
 	/** Constant for query id of get all teachers in SIMSQuery.xml */
 	public static final String QUERY_ID_ALL_TEACHERS = "all_teachers";
 	
-	/** Constant for query id of get all teachers in SIMSQuery.xml */
+	/** Constant for query id of get subject of student in SIMSQuery.xml */
 	public static final String QUERY_ID_SUBJECTS_OF_STUDENT = "subject_of_student";
 	
-	/** Constant for query id of get all teachers in SIMSQuery.xml */
+	/** Constant for query id of get subject of teacher in SIMSQuery.xml */
 	public static final String QUERY_ID_SUBJECTS_OF_TEACHER = "subject_of_teacher";
 	
-	/** Constant for query id of get all teachers in SIMSQuery.xml */
+	/** Constant for query id of get subject of exam in SIMSQuery.xml */
 	public static final String QUERY_ID_SUBJECTS_OF_EXAM = "subject_of_exam";
 	
 	
