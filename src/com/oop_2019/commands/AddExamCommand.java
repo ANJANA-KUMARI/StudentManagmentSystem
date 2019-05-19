@@ -37,7 +37,7 @@ public class AddExamCommand implements ICommand<Boolean> {
 		Date dateExamValue = null;
 		
 		try {
-			dateExamValue = new SimpleDateFormat("dd/MM/yyyy").parse(examDateValue);
+			dateExamValue = new SimpleDateFormat("yyyy-MM-dd").parse(examDateValue);
 		} catch (ParseException e) {
 			errorList.add("Exam date is required.");
 			e.printStackTrace();

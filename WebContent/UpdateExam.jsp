@@ -1,3 +1,9 @@
+<%@page import="com.oop_2019.commands.GetSubjectAllCommand"%>
+<%@page import="com.oop_2019.models.Subject"%>
+<%@page import="java.util.List"%>
+<%@page import="com.oop_2019.commands.GetExamCommand"%>
+<%@page import="com.oop_2019.models.Exam"%>
+<%@page import="com.oop_2019.commands.ICommand"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -31,6 +37,11 @@
 
 <body id="page-top">
 
+<%
+	ICommand<Exam> command = new GetExamCommand();
+	Exam e = command.execute(request, response);
+
+%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -56,45 +67,57 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800 text-center">Update Exam</h1>
                 <br>
-                <form>
+                <form method="POST" action="UpdateExam">
+                
+                	<input type="hidden" name="examId" value="<%=e.getId() %>" />
                   <div class="form-row align-items-center mb-2">
                     <div>
                       <label class="mr-sm-2" for="inlineFormCustomSelect" style="font-weight: bold;">Exam Name</label>
-                      <input type="text" class="form-control form-control-user" name="examName" placeholder="Exam Name">
+                      <input type="text" class="form-control form-control-user" value="<%=e.getExamName() %>" name="examName" placeholder="Exam Name">
                     </div>
 
                     <div style="margin-left: 50px;">
                       <label style="font-weight: bold;">Exam Date</label>
-                      <input type="date" class="form-control form-control-user col-sm-12" name="examDate">
+                      <input type="date" value="<%=e.getExamDate() %>" class="form-control form-control-user col-sm-12" name="examDate">
                     </div>
 
                     <div style="margin-left: 50px; font-weight: bold;">
                       <label class="mr-sm-2" for="inlineFormCustomSelect">Subject</label>
                       <select class="custom-select mr-sm-2" name="subjectHead">
-                        <option selected>Choose...</option>
-                        <option value="1">Buddihist</option>
-                        <option value="2">Sinhala</option>
-                        <option value="3">English</option>
+                       
+                                <%
+                                     	ICommand<List<Subject>> scommand= new GetSubjectAllCommand();
+                                     	
+                                     	List<Subject> subjects =scommand.execute(request, response);
+                                     	
+                                     %>
+                                     
+                                     <% for(Subject subject:subjects){ %>
+                                     
+		                                  <option value="<%=subject.getId()%>"
+		                                  	<% out.print(subject.getId() == e.getSubject().getId() ? "selected": "");%>>
+		                                  <%=subject.getSubjectName() %></option>
+                                     <%} %>
                       </select>
                     </div>
 
                     <div class="col-auto my-3" style="margin-left: 50px; font-weight: bold;">
                       <label class="mr-sm-2" for="inlineFormCustomSelect">Grade</label>
                       <select class="custom-select mr-sm-2" name="grade">
-                        <option selected>Choose...</option>
-                        <option value="1">Grade 1</option>
-                        <option value="2">Grade 2</option>
-                        <option value="3">Grade 3</option>
-                        <option value="4">Grade 4</option>
-                        <option value="5">Grade 5</option>
-                        <option value="6">Grade 6</option>
-                        <option value="7">Grade 7</option>
-                        <option value="8">Grade 8</option>
-                        <option value="9">Grade 9</option>
-                        <option value="10">Grade 10</option>
-                        <option value="11">Grade 11</option>
-                        <option value="12">Grade 12</option>
-                        <option value="13">Grade 13</option>
+                        
+                        <option value="1" <% out.print(e.getGrade().equals("1") ? "selected" : ""); %> >Grade 1</option>
+                        <option value="2" <% out.print(e.getGrade().equals("2") ? "selected" : ""); %>>Grade 2</option>
+                        <option value="3" <% out.print(e.getGrade().equals("3") ? "selected" : ""); %>>Grade 3</option>
+                        <option value="4" <% out.print(e.getGrade().equals("4") ? "selected" : ""); %>>Grade 4</option>
+                        <option value="5" <% out.print(e.getGrade().equals("5") ? "selected" : ""); %>>Grade 5</option>
+                        <option value="6" <% out.print(e.getGrade().equals("6") ? "selected" : ""); %>>Grade 6</option>
+                        <option value="7" <% out.print(e.getGrade().equals("7") ? "selected" : ""); %>>Grade 7</option>
+                        <option value="8" <% out.print(e.getGrade().equals("8") ? "selected" : ""); %>>Grade 8</option>
+                        <option value="9" <% out.print(e.getGrade().equals("9") ? "selected" : ""); %>>Grade 9</option>
+                        <option value="10" <% out.print(e.getGrade().equals("10") ? "selected" : ""); %>>Grade 10</option>
+                        <option value="11" <% out.print(e.getGrade().equals("11") ? "selected" : ""); %>>Grade 11</option>
+                        <option value="12" <% out.print(e.getGrade().equals("12") ? "selected" : ""); %>>Grade 12</option>
+                        <option value="13" <% out.print(e.getGrade().equals("13") ? "selected" : ""); %>>Grade 13</option>
                       </select>
                     </div>
                   </div>
@@ -102,7 +125,7 @@
                   <br><br>
                   <div class="col-lg-2">
                     <input type="submit" class="btn btn-primary btn-user btn-block" value="Update">
-                    <input type="button" class="btn btn-primary btn-user btn-block" value="Delete">
+                    
                   </div>
                 </form>
               </div>

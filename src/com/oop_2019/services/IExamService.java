@@ -10,4 +10,5 @@ public interface IExamService {
 	void updateExam(Exam exam);
 	Exam getExam(int id);
 	List<Exam> getAllExams();
+	void deleteExam(int examId);
 }

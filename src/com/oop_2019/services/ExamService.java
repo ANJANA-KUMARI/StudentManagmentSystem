@@ -43,4 +43,9 @@ public class ExamService implements IExamService{
 		}
 		return exams;
 	}
+
+	@Override
+	public void deleteExam(int examId) {
+		examRepository.delete(examId);
+	}
 }

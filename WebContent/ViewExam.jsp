@@ -1,3 +1,7 @@
+<%@page import="com.oop_2019.commands.GetAllExamsCommand"%>
+<%@page import="com.oop_2019.models.Exam"%>
+<%@page import="java.util.List"%>
+<%@page import="com.oop_2019.commands.ICommand"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -54,7 +58,7 @@
                   <div class="p-5">
                          
                       <!-- Page Heading -->
-                      <h1 class="h3 mb-2 text-gray-800 text-center">View Subject</h1>
+                      <h1 class="h3 mb-2 text-gray-800 text-center">View Exams</h1>
                       <br>
                       <form method="GET">
                         <div class="form-row align-items-center mb-3">
@@ -73,6 +77,11 @@
                       </div>
                   </form>
     <br><br>
+    
+    <%
+    	ICommand<List<Exam>> command = new GetAllExamsCommand();
+    	List<Exam> exams = command.execute(request, response);
+    %>
        <!-- DataTales Example -->
        <div class="card shadow mb-4">
           <div class="card-header py-3">
@@ -86,16 +95,34 @@
                       <th>Exam ID</th>
                       <th>Exam Name</th>
                       <th>Grade</th>
+                      <th>Subject</th>                      
                       <th>Date</th>
+                      <th>Operations</th>
                   </tr>
                 </thead>
                 <tbody>
+                
+                <% for(Exam e :exams){ %>
                     <tr>
-                        <td>S001</td>
-                        <td>System Architect</td>
-                        <td>10</td>
-                        <td>2019/2020</td>
+                        <td><%=e.getId() %></td>
+                        <td><%=e.getExamName() %></td>
+                        <td>Grade <%=e.getGrade() %></td>
+                        <td><%=e.getSubject().getSubjectName() %></td>
+                        <td><%=e.getExamDate() %></td>
+                        <td>
+                                   <a class="btn btn-sm btn-primary" href="UpdateExam.jsp?examId=<%=e.getId()%>">
+                    	<i class="fas fa-pencil-alt"></i>
+                    </a>	
+                    <form method="POST" action="DeleteExam" style="display:inline-block">
+                    	<input  type="hidden" name="examId" value="<%=e.getId()%>" /> 
+                    <button class="btn btn-sm btn-danger" type="submit">
+                    	<i class="fas fa-trash-alt"></i>
+                    </button>	
+                    </form>
+                        </td>
                       </tr>
+                      
+                      <%} %>
                 </tbody>
               </table>
             </div>

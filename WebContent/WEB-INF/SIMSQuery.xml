@@ -164,8 +164,8 @@
 				teacherID varchar(5),
 				subjectId int,
 				CONSTRAINT PK_TeachSub PRIMARY KEY(teacherId, subjectId),
-				CONSTRAINT FK_Teach FOREIGN KEY (teacherId) REFERENCES Teacher (teacherId),
-				CONSTRAINT FK_Subj FOREIGN KEY (subjectId) REFERENCES Subject (subjectId)
+				CONSTRAINT FK_Teach FOREIGN KEY (teacherId) REFERENCES Teacher (teacherId) ON DELETE CASCADE,
+				CONSTRAINT FK_Subj FOREIGN KEY (subjectId) REFERENCES Subject (subjectId ) ON DELETE CASCADE
 		)
 		]]>
 		</query>
@@ -190,8 +190,8 @@
 			subjectID int,
 			examID INT,
 			CONSTRAINT PK_SubExam PRIMARY KEY(subjectId, examId),
-			CONSTRAINT FK_Sub FOREIGN KEY (subjectId) REFERENCES Subject (subjectId),
-			CONSTRAINT FK_exam FOREIGN KEY (examId) REFERENCES Exam (examId)
+			CONSTRAINT FK_Sub FOREIGN KEY (subjectId) REFERENCES Subject (subjectId) ON DELETE CASCADE,
+			CONSTRAINT FK_exam FOREIGN KEY (examId) REFERENCES Exam (examId) ON DELETE CASCADE
 	)
 	]]>
 	</query>

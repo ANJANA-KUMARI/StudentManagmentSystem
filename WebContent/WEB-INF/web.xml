@@ -17,7 +17,7 @@
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.oop_2019.servlets.LoginServlet</servlet-class>
   </servlet>
-    <servlet>
+  <servlet>
     <servlet-name>LogoutServlet</servlet-name>
     <servlet-class>com.oop_2019.servlets.LogoutServlet</servlet-class>
   </servlet>
@@ -49,6 +49,14 @@
     <servlet-name>AddExamServlet</servlet-name>
     <servlet-class>com.oop_2019.servlets.AddExamServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>UpdateExamServlet</servlet-name>
+    <servlet-class>com.oop_2019.servlets.UpdateExamServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteExamServlet</servlet-name>
+    <servlet-class>com.oop_2019.servlets.DeleteExamServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>AddStudentServlet</servlet-name>
     <url-pattern>/AddStudent</url-pattern>
@@ -78,27 +86,25 @@
     <url-pattern>/AddSubject</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>UpdateSubjectServlet</servlet-name>
-    <url-pattern>/UpdateSubject</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>DeleteSubjectServlet</servlet-name>
-    <url-pattern>/DeleteSubject</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
     <servlet-name>AddExamServlet</servlet-name>
     <url-pattern>/AddExam</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateExamServlet</servlet-name>
+    <url-pattern>/UpdateExam</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteExamServlet</servlet-name>
+    <url-pattern>/DeleteExam</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/Logout</url-pattern>
   </servlet-mapping>
-  
   <welcome-file-list>
     <welcome-file>Login.jsp</welcome-file>
   </welcome-file-list>

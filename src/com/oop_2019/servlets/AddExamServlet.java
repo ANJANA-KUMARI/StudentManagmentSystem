@@ -38,7 +38,7 @@ public class AddExamServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -52,7 +52,7 @@ public class AddExamServlet extends HttpServlet {
 		ICommand<Boolean> command = new AddExamCommand();
 
 		if (command.execute(request, response)) {
-			response.sendRedirect("ExamList.jsp");
+			response.sendRedirect("ViewExam.jsp");
 		} else {
 
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AddExam.jsp");

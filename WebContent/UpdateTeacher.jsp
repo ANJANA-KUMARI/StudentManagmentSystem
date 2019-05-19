@@ -155,28 +155,7 @@
                                 </div>
                               </div>
                               
-                              <div>
-                                <div class="col-2 my-3">
-                                    <label style="font-weight: bold;">Class</label>
-                                  <select name="grade" style="border-radius: 10rem" class="form-control mr-sm-2" id="inlineFormCustomSelect">
-                                    <option selected>Class</option>
-                                    <option value="1">Grade 1</option>
-                                    <option value="2">Grade 2</option>
-                                    <option value="3">Grade 3</option>
-                                    <option value="4">Grade 4</option>
-                                    <option value="5">Grade 5</option>
-                                    <option value="6">Grade 6</option>
-                                    <option value="7">Grade 7</option>
-                                    <option value="8">Grade 8</option>
-                                    <option value="9">Grade 9</option>
-                                    <option value="10">Grade 10</option>
-                                    <option value="11">Grade 11</option>
-                                    <option value="12">Grade 12</option>
-                                    <option value="13">Grade 13</option>
-                                  </select>
-                                </div>
-                            </div>
-        
+                           
                               <div class="col-sm-4 my-3">
                                   <label style="font-weight: bold;">Position</label>
                                   <select name="position" style="border-radius: 10rem" class="form-control mr-sm-2" id="inlineFormCustomSelect">

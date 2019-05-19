@@ -1,3 +1,7 @@
+<%@page import="com.oop_2019.commands.GetSubjectAllCommand"%>
+<%@page import="com.oop_2019.models.Subject"%>
+<%@page import="java.util.List"%>
+<%@page import="com.oop_2019.commands.ICommand"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 	<!-- some test comment-->
@@ -59,7 +63,7 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800 text-center">Add Exam</h1>
                     <br>
-                    <form name="examForm" class="user" method="POST" onsubmit="return validateForm()">
+                    <form name="examForm" class="user" method="POST" action="AddExam" onsubmit="return validateForm()">
                       <div class="form-row align-items-center mb-2">
                           <div>
                              <label class="mr-sm-2" for="inlineFormCustomSelect" style="font-weight: bold;">Exam Name</label>
@@ -73,11 +77,20 @@
                          
                            <div style="margin-left: 50px; font-weight: bold;">
                               <label class="mr-sm-2" for="inlineFormCustomSelect">Subject</label>
-                              <select class="custom-select mr-sm-2" name="subjectHead">
-                                <option selected>Choose...</option>
-                                  <option value="1">Buddihist</option>
-                                  <option value="2">Sinhala</option>
-                                  <option value="3">English</option>
+                              <select class="custom-select mr-sm-2" name="subjectId">
+                              
+                                <%
+                                     	ICommand<List<Subject>> command= new GetSubjectAllCommand();
+                                     	
+                                     	List<Subject> subjects =command.execute(request, response);
+                                     	
+                                     %>
+                                     
+                                     <% for(Subject subject:subjects){ %>
+                                     
+		                                  <option value="<%=subject.getId()%>"><%=subject.getSubjectName() %></option>
+                                     <%} %>
+                                
                               </select>
                            </div>
         

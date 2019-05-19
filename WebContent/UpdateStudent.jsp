@@ -159,20 +159,20 @@
 												<label style="font-weight: bold;">Grade</label> <select
 													style="border-radius: 10rem" class="form-control mr-sm-2"
 													id="inlineFormCustomSelect" name="grade">
-													<option value="0" selected>Grade</option>
-													<option value="1">Grade 1</option>
-													<option value="2">Grade 2</option>
-													<option value="3">Grade 3</option>
-													<option value="4">Grade 4</option>
-													<option value="5">Grade 5</option>
-													<option value="6">Grade 6</option>
-													<option value="7">Grade 7</option>
-													<option value="8">Grade 8</option>
-													<option value="9">Grade 9</option>
-													<option value="10">Grade 10</option>
-													<option value="11">Grade 11</option>
-													<option value="12">Grade 12</option>
-													<option value="13">Grade 13</option>
+												    
+                        <option value="1" <% out.print(s.getGrade().equals("1") ? "selected" : ""); %> >Grade 1</option>
+                        <option value="2" <% out.print(s.getGrade().equals("2") ? "selected" : ""); %>>Grade 2</option>
+                        <option value="3" <% out.print(s.getGrade().equals("3") ? "selected" : ""); %>>Grade 3</option>
+                        <option value="4" <% out.print(s.getGrade().equals("4") ? "selected" : ""); %>>Grade 4</option>
+                        <option value="5" <% out.print(s.getGrade().equals("5") ? "selected" : ""); %>>Grade 5</option>
+                        <option value="6" <% out.print(s.getGrade().equals("6") ? "selected" : ""); %>>Grade 6</option>
+                        <option value="7" <% out.print(s.getGrade().equals("7") ? "selected" : ""); %>>Grade 7</option>
+                        <option value="8" <% out.print(s.getGrade().equals("8") ? "selected" : ""); %>>Grade 8</option>
+                        <option value="9" <% out.print(s.getGrade().equals("9") ? "selected" : ""); %>>Grade 9</option>
+                        <option value="10" <% out.print(s.getGrade().equals("10") ? "selected" : ""); %>>Grade 10</option>
+                        <option value="11" <% out.print(s.getGrade().equals("11") ? "selected" : ""); %>>Grade 11</option>
+                        <option value="12" <% out.print(s.getGrade().equals("12") ? "selected" : ""); %>>Grade 12</option>
+                        <option value="13" <% out.print(s.getGrade().equals("13") ? "selected" : ""); %>>Grade 13</option>
 												</select>
 											</div>
 										</div>

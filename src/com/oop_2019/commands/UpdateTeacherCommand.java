@@ -85,12 +85,7 @@ public class UpdateTeacherCommand implements ICommand<Boolean> {
 		if(genderValue.length() == 0) {
 			errorMsgs.add("Gender is required");
 		}
-		
-		String gradeValue = request.getParameter("grade");
-		if(gradeValue.length() == 0) {
-			errorMsgs.add("Grade is required");
-		}
-		
+	
 		String positionValue = request.getParameter("position");
 		
 		

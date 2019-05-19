@@ -5,11 +5,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+
 import com.oop_2019.models.Exam;
 import com.oop_2019.util.CommonConstants;
 import com.oop_2019.util.ModelUtil;
 import com.oop_2019.util.QueryUtil;
-import com.sun.istack.internal.logging.Logger;
+
 
 public class ExamRepository extends RepositoryBase implements IRepository<Exam> {
 
@@ -134,7 +136,7 @@ public class ExamRepository extends RepositoryBase implements IRepository<Exam> 
 			openDBConnection();
 
 			preparedStatement = dbConnection.prepareStatement(QueryUtil
-					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_IS_GET_SUBJECT_IDS));
+					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_ID_GET_EXAM));
 
 			preparedStatement.setInt(1, Integer.parseInt(id.toString()));
 
