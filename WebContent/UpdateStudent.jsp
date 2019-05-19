@@ -1,3 +1,13 @@
+<%@page import="java.util.Arrays"%>
+<%@page import="com.oop_2019.commands.GetSubjectAllCommand"%>
+
+<%@page import="java.util.List"%>
+<%@page import="com.oop_2019.commands.GetStudentComand"%>
+<%@page import="com.sun.org.apache.bcel.internal.generic.GETSTATIC"%>
+<%@page import="com.oop_2019.commands.GetTeacherCommand"%>
+<%@page import="com.oop_2019.models.Student"%>
+<%@page import="com.oop_2019.models.Subject"%>
+<%@page import="com.oop_2019.commands.ICommand"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -34,6 +44,13 @@
 
 <body id="page-top">
 
+<%
+
+	ICommand<Student> command = new GetStudentComand();
+	
+	Student s = command.execute(request, response);
+%>
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -58,28 +75,30 @@
 								<div class="text-center">
 									<h1 class="h4 text-gray-900 mb-4">Update Student</h1>
 								</div>
-								<form class="user">
+								<form class="user" method="POST" action="UpdateStudent">
+								
+								<input type="hidden" name="studentId" value="<%=s.getId() %>" />
 										<div class="col-sm-4 mb-3">
 											<label style="font-weight: bold;">First Name</label> <input
 												type="text" class="form-control form-control-user"
-												id="exampleFirstName" placeholder="First Name">
+												name="firstName" value="<%=s.getFirstName() %>" placeholder="First Name">
 										</div>
 										<div class="col-sm-4 mb-3">
 											<label style="font-weight: bold;">Last Name</label> <input
 												type="text" class="form-control form-control-user"
-												id="exampleLastName" placeholder="Last Name">
+												name="lastName" value="<%=s.getLastName() %>" placeholder="Last Name">
 										</div>
 
 										<div class="form-group">
 											<div class="col-sm-4">
 												<label style="font-weight: bold;">Section</label> <input
 													type="text" class="form-control form-control-user"
-													id="exampleSection" placeholder="Section">
+													name="section" value="<%=s.getSection() %>" placeholder="Section">
 											</div>
 											<div class="col-sm-4">
 												<label style="font-weight: bold;">BirthDay</label> <input
 													type="date" class="form-control form-control-user"
-													id="exampleBirthday" placeholder="BirthDay">
+													name="birthday" value="<%=s.getBirthday() %>" placeholder="BirthDay">
 											</div>
 										</div>
 
@@ -87,44 +106,31 @@
 											<div class="col-sm-4">
 												<label style="font-weight: bold;">Email</label> <input
 													type="email" class="form-control form-control-user"
-													id="exampleInputEmail" placeholder="Email Address">
+													name="email" value="<%=s.getEmail() %>" placeholder="Email Address">
 											</div>
 										</div>
 
-										<div class="form-group">
-											<div class="col-sm-4 mb-3">
-												<label style="font-weight: bold;">Password</label> <input
-													type="password" class="form-control form-control-user"
-													id="exampleInputPassword" placeholder="Password">
-											</div>
-											<div class="col-sm-4">
-												<label style="font-weight: bold;">Repeat Password</label> <input
-													type="password" class="form-control form-control-user"
-													id="exampleRepeatPassword" placeholder="Repeat Password">
-											</div>
-										</div>
-
-
+										
 										<div class="col-4 my-3">
 											<label style="font-weight: bold;">Phone</label> <input
-												type="tel" class="form-control form-control-user"
-												placeholder="Phone">
+												type="tel" class="form-control form-control-user" name="phone"
+												placeholder="Phone" value="<%=s.getPhone() %>">
 										</div>
 
 										<div class="form-group form-row">
 											<div class="col-4" style="padding-right: 20px;">
 												<label style="margin-left: 12px; font-weight: bold;">City</label>
-												<input style="margin-left: 12px;" type="text"
-													class="form-control form-control-user" placeholder="City">
+												<input style="margin-left: 12px;" type="text" name="city"
+													class="form-control form-control-user" value="<%=s.getCity() %>" placeholder="City">
 											</div>
 											<div class="col-4">
-												<label style="font-weight: bold;">State</label> <input
-													type="text" class="form-control form-control-user"
+												<label style="font-weight: bold;">State</label> <input name="state"
+													type="text" class="form-control form-control-user" value="<%=s.getState() %>"
 													placeholder="State">
 											</div>
 											<div class="col-3">
-												<label style="font-weight: bold;">Zip</label> <input
-													type="text" class="form-control form-control-user"
+												<label style="font-weight: bold;">Zip</label> <input name="zip"
+													type="text" class="form-control form-control-user" value="<%=s.getZip()%>"
 													placeholder="Zip">
 											</div>
 										</div>
@@ -133,15 +139,17 @@
 											<label style="margin-left: 11px; font-weight: bold;">Gender</label>
 											<div class="custom-control custom-radio"
 												style="margin-left: 20px;">
-												<input type="radio" id="customRadioInline4"
-													name="customRadioInline1" class="custom-control-input">
+												<input type="radio" id="customRadioInline4" value="M"
+												checked="<% out.print(s.getGender() == "M" ? "checked" : "false"); %>"
+													name="gender" class="custom-control-input">
 												<label class="custom-control-label" for="customRadioInline4">Male</label>
 											</div>
 
 											<div class="custom-control custom-radio"
 												style="margin-left: 20px;">
-												<input type="radio" id="customRadioInline5"
-													name="customRadioInline1" class="custom-control-input">
+												<input type="radio" id="customRadioInline5" value="F"
+												checked="<% out.print(s.getGender() == "F" ? "checked" : "false"); %>"
+													name="gender" class="custom-control-input">
 												<label class="custom-control-label" for="customRadioInline5">Female</label>
 											</div>
 										</div>
@@ -150,8 +158,8 @@
 											<div class="col-2 my-3">
 												<label style="font-weight: bold;">Grade</label> <select
 													style="border-radius: 10rem" class="form-control mr-sm-2"
-													id="inlineFormCustomSelect">
-													<option selected>Grade</option>
+													id="inlineFormCustomSelect" name="grade">
+													<option value="0" selected>Grade</option>
 													<option value="1">Grade 1</option>
 													<option value="2">Grade 2</option>
 													<option value="3">Grade 3</option>
@@ -169,99 +177,27 @@
 											</div>
 										</div>
 
-										<div class="col-sm-2 my-3">
-											<label style="font-weight: bold;">Roll</label> <select
-												style="border-radius: 10rem" class="form-control mr-sm-2"
-												id="inlineFormCustomSelect">
-												<option selected>Roll</option>
-												<option value="1">Student</option>
-												<option value="2">Monitor</option>
-												<option value="3">Prefect</option>
-											</select>
-										</div>
+									
 
-										<div class="form-group">
-											<label style="margin-left: 11px; font-weight: bold;">Term</label>
-											<div class="custom-control custom-radio"
-												style="margin-left: 20px;">
-												<input type="radio" id="customRadioInline1"
-													name="customRadioInline1" class="custom-control-input">
-												<label class="custom-control-label" for="customRadioInline1">First
-													Term</label>
-											</div>
-
-											<div class="custom-control custom-radio"
-												style="margin-left: 20px;">
-												<input type="radio" id="customRadioInline2"
-													name="customRadioInline1" class="custom-control-input">
-												<label class="custom-control-label" for="customRadioInline2">Second
-													Term</label>
-											</div>
-
-											<div class="custom-control custom-radio"
-												style="margin-left: 20px;">
-												<input type="radio" id="customRadioInline3"
-													name="customRadioInline1" class="custom-control-input">
-												<label class="custom-control-label" for="customRadioInline3">Third
-													Term</label>
-											</div>
-										</div>
 
 										<div class="col my-3">
 											<div style="padding-left: 0px;"
 												class="custom-control custom-checkbox">
 												<label style="font-weight: bold; margin-right: 43px">Subjects</label>
-												<input type="checkbox" class="form-check-input"
-													id="customCheck1"> <label
-													style="margin-right: 30px;" class="form-check-label"
-													for="customCheck1">Buddhist</label> <input type="checkbox"
-													class="form-check-input" id="customCheck1" value="option1">
-												<label style="margin-right: 30px;" class="form-check-label"
-													for="customCheck2">Sinhala</label> <input type="checkbox"
-													class="form-check-input" id="customCheck2" value="option2">
-												<label style="margin-right: 30px;" class="form-check-label"
-													for="customCheck3">English</label> <input type="checkbox"
-													class="form-check-input" id="customCheck3" value="option3">
-												<label style="margin-right: 30px;" class="form-check-label"
-													for="customCheck4">Maths</label> <input type="checkbox"
-													class="form-check-input" id="customCheck4" value="option4">
-												<label style="margin-right: 30px;" class="form-check-label"
-													for="customCheck5">Buddhist</label> <input type="checkbox"
-													class="form-check-input" id="customCheck5" value="option5">
-												<label style="margin-right: 30px;" class="form-check-label"
-													for="customCheck6">Sinhala</label> <input type="checkbox"
-													class="form-check-input" id="customCheck6" value="option6">
-												<label style="margin-right: 30px;" class="form-check-label"
-													for="customCheck7">English</label> <input type="checkbox"
-													class="form-check-input" id="customCheck7" value="option7">
-												<label style="margin-right: 30px;" class="form-check-label"
-													for="customCheck8">Maths</label> <input type="checkbox"
-													class="form-check-input" id="customCheck8" value="option8">
-												<label style="margin-right: 30px;" class="form-check-label"
-													for="customCheck9">Buddhist</label> <input type="checkbox"
-													class="form-check-input" id="customCheck9" value="option9">
-												<label style="margin-right: 30px;" class="form-check-label"
-													for="customCheck10">Sinhala</label> <input type="checkbox"
-													class="form-check-input" id="customCheck10"
-													value="option10"> <label
-													style="margin-right: 30px;" class="form-check-label"
-													for="customCheck11">English</label> <input type="checkbox"
-													class="form-check-input" id="customCheck11"
-													value="option11  "> <label
-													style="margin-right: 30px;" class="form-check-label"
-													for="customCheck12">Maths</label> <input type="checkbox"
-													class="form-check-input" id="customCheck12"
-													value="option12  "> <label
-													style="margin-right: 30px;" class="form-check-label"
-													for="customCheck10">Sinhala</label> <input type="checkbox"
-													class="form-check-input" id="customCheck13"
-													value="option13"> <label
-													style="margin-right: 30px;" class="form-check-label"
-													for="customCheck11">English</label> <input type="checkbox"
-													class="form-check-input" id="customCheck14"
-													value="option14  "> <label
-													style="margin-right: 30px;" class="form-check-label"
-													for="customCheck12">Maths</label>
+												       <%
+                                     	ICommand<List<Subject>> getSbjectsCommand= new GetSubjectAllCommand();
+                                     	
+                                     	List<Subject> subjects = getSbjectsCommand.execute(request, response);
+                                     	
+                                     %>
+                                     
+                                     <% for(Subject subject:subjects){ %>
+                                    
+                                      <input type="checkbox" class="form-check-input" name="subjectIds" value="<%=subject.getId() %>" 
+                                      checked="<% out.print(Arrays.asList(s.getSubjects()).contains(subject) ? "checked" : "false"); %>"   >
+                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck1"><%=subject.getSubjectName() %></label>
+                                     
+                                     <% } %>
 											</div>
 										</div>
 

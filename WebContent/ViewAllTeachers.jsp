@@ -1,3 +1,8 @@
+<%@page import="com.oop_2019.models.Subject"%>
+<%@page import="com.oop_2019.commands.GetAllTeachersCommand"%>
+<%@page import="com.oop_2019.models.Teacher"%>
+<%@page import="java.util.List"%>
+<%@page import="com.oop_2019.commands.ICommand"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
@@ -52,6 +57,11 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">All Teachers</h1>
                 
+                <%
+                	ICommand<List<Teacher>> command = new GetAllTeachersCommand();
+                	List<Teacher> teachers =command.execute(request, response);
+                 
+                %>
       
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
@@ -62,55 +72,64 @@
                     <div class="table-responsive">
                       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                          <tr>
-                            <th>Roll</th>
+                        
+                          <tr>          
+                                                               
+                            <th>ID</th>
                             <th>Name</th>
-                            <th>Address</th>
-                            <th>Registration Number</th>
-                            <th>Register date</th>
                             <th>Email</th>
-                            <th>Salary</th>
+                            <th>Position</th>
+                            <th>Gender</th>
+                            <th>Birthday</th>
+                            <th>Subjects</th>
+                            <th>Operations</th>
                           </tr>
+                          
+                          
                         </thead>
                         <tfoot>
                           <tr>
-                          <th>Roll</th>
-                          <th>Name</th>
-                          <th>Address</th>
-                          <th>Registration Number</th>
-                          <th>Register date</th>
-                          <th>Email</th>
-                          <th>Salary</th>
+                          <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Position</th>
+                            <th>Gender</th>
+                            <th>Birthday</th>
+                            <th>Subjects</th>
+                            <th>Operations</th>
                           </tr>
                         </tfoot>
                         <tbody>
+                        <% for(Teacher t :teachers){ %>
                           <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>d@b.com</td>
-                            <td>$320,800</td>
+                            <td><%=t.getId() %></td>
+                            <td><%=t.getFirstName() %><%=" " %> <%=t.getLastName() %></td>
+                            <td><%=t.getEmail() %></td>
+                            <td><%=t.getPosition() %></td>
+                            <td><%=t.getGender() %></td>
+                            <td><%=t.getBirthday() %></td>
+                            <td> 
+                            	<% for(Subject s:t.getSubjects()){ %>
+                            		<span class="badge badge-pill badge-info"><%=s.getSubjectName() %></span>
+                            	<% } %>
+                             </td>
+                             
+                            <td>
+                            
+                             <a class="btn btn-sm btn-primary" href="UpdateTeacher.jsp?teacherId=<%=t.getId()%>">
+                    	<i class="fas fa-pencil-alt"></i>
+                    </a>	
+                    <form method="POST" action="DeleteTeacher" style="display:inline-block">
+                    	<input  type="hidden" name="teacherId" value="<%=t.getId()%>" /> 
+                    <button class="btn btn-sm btn-danger" type="submit">
+                    	<i class="fas fa-trash-alt"></i>
+                    </button>	
+                    </form>
+                            </td>
                           </tr>
-                          <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>d@b.com</td>
-                            <td>$170,750</td>
-                          </tr>
-                          <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>66</td>
-                            <td>2009/01/12</td>
-                            <td>d@b.com</td>
-                            <td>$86,000</td>
-                          </tr>
+                          
+                          <% } %>
+                        
                         </tbody>
                       </table>
                     </div>

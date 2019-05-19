@@ -26,6 +26,11 @@ public class GetAllStudentsCommand implements ICommand<List<Student>> {
 		IStudentService studentService = new StudentService();
 		
 		List<Student> allStudents = studentService.getAllStudents();
+		
+		if(grade == "All" || grade == null || grade.length() == 0) {
+			return allStudents;
+		}
+		
 		List<Student> studentsOfGrade = new ArrayList<Student>();
 		
 		for (Student student : allStudents) {

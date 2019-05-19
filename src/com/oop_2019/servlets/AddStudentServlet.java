@@ -41,8 +41,8 @@ public class AddStudentServlet extends HttpServlet {
 		ICommand<Boolean> command = new AddStudentCommand();
 		
 		if(command.execute(request, response)) {
-			// TODO redirect to student list
-			response.sendRedirect("");
+
+			response.sendRedirect("ViewStudent.jsp");
 		}else {
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AddStudent.jsp");

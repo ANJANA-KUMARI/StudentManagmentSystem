@@ -15,7 +15,7 @@ import com.oop_2019.commands.UpdateStudentCommand;
 /**
  * Servlet implementation class UpdateStudentServlet
  */
-@WebServlet("/UpdateStudentServlet")
+
 public class UpdateStudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -36,8 +36,8 @@ public class UpdateStudentServlet extends HttpServlet {
 		ICommand<Boolean> command = new UpdateStudentCommand();
 		
 		if(command.execute(request, response)) {
-			// TODO 
-			response.sendRedirect("");
+
+			response.sendRedirect("ViewStudent.jsp");
 		}else {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/UpdateStudent.jsp");
 			dispatcher.forward(request, response);

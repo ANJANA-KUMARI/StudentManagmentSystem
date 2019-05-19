@@ -12,6 +12,6 @@ public interface ITeacherRepository<T> extends IRepository<T> {
 	
 	int getAdminCount();
 	String getPassword(String email);
-	T get(String email);
+	T getByEmail(String email);
 	void create(T entity, String password);
 }

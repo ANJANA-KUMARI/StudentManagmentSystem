@@ -39,8 +39,8 @@ public class DeleteTeacherServlet extends HttpServlet {
 		Boolean deleteStatus = command.execute(request, response);
 		
 		if(deleteStatus) {
-			// TODO redirect to TeacherList
-			response.sendRedirect("");
+
+			response.sendRedirect("ViewAllTeachers.jsp");
 		}else {
 			request.setAttribute("error_msg", "Failed to delete the teacher!");
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/TeacherList.jsp");

@@ -33,9 +33,9 @@ public class TeacherRepository extends RepositoryBase implements ITeacherReposit
 	@Override
 	public void create(Teacher entity, String password) {
 		try {
+			entity.setId(ModelUtil.getNextId(CommonConstants.PREFIX_TEACHER_ID, this.getIds()));
 			openDBConnection();
 			
-			entity.setId(ModelUtil.getNextId(CommonConstants.PREFIX_TEACHER_ID, this.getIds()));
 
 			preparedStatement = dbConnection.prepareStatement(QueryUtil
 					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_ID_INSERT_TEACHER));
@@ -116,7 +116,9 @@ public class TeacherRepository extends RepositoryBase implements ITeacherReposit
 
 			preparedStatement = dbConnection.prepareStatement(QueryUtil
 					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_ID_UPDATE_TEACHER));
-
+			String query = QueryUtil
+					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_ID_UPDATE_TEACHER);
+			
 			preparedStatement.setString(1, entity.getTitle());
 			preparedStatement.setString(2, entity.getFirstName());
 			preparedStatement.setString(3, entity.getLastName());
@@ -132,6 +134,7 @@ public class TeacherRepository extends RepositoryBase implements ITeacherReposit
 			preparedStatement.setString(13, entity.getImage());
 			preparedStatement.setString(14, entity.getId());
 
+			log.log(Level.INFO, "SQL => " + query);
 			preparedStatement.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 
@@ -316,7 +319,7 @@ public class TeacherRepository extends RepositoryBase implements ITeacherReposit
 	}
 
 	@Override
-	public Teacher get(String email) {
+	public Teacher getByEmail(String email) {
 		Teacher teacher = null;
 
 		try {

@@ -39,10 +39,10 @@ public class UpdateTeacherServlet extends HttpServlet {
 		Boolean addStatus = command.execute(request, response);
 		
 		if(addStatus) {
-			// TODO redirect to TeacherList
-			response.sendRedirect("");
+
+			response.sendRedirect("ViewAllTeachers.jsp");
 		}else {
-			
+			System.out.println("Has errors in UpdateTeacherCommand"+ request.getAttribute("errorMsgs"));
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/UpdateTeacher.jsp");
 			dispatcher.forward(request, response);
 		}

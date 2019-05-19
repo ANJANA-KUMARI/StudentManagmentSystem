@@ -125,7 +125,8 @@ public class AddTeacherCommand implements ICommand<Boolean> {
 		
 		
 		// add subjects 
-		String[] subjectIds = request.getParameter("subjectIds").split(",");
+		String[] subjectIds = request.getParameterValues("subjectIds");
+		System.out.println("Ids => " + subjectIds.length);
 		
 		if(subjectIds.length > 0) {
 			

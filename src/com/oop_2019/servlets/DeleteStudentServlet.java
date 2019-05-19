@@ -16,7 +16,7 @@ import com.oop_2019.commands.ICommand;
 /**
  * Servlet implementation class DeleteStudentServlet
  */
-@WebServlet("/DeleteStudentServlet")
+
 public class DeleteStudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -39,8 +39,8 @@ public class DeleteStudentServlet extends HttpServlet {
 		Boolean deleteStatus = command.execute(request, response);
 
 		if (deleteStatus) {
-			// TODO redirect to StudentList
-			response.sendRedirect("");
+
+			response.sendRedirect("ViewStudent.jsp");
 		} else {
 			request.setAttribute("error_msg", "Failed to delete the teacher!");
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/StudentList.jsp");

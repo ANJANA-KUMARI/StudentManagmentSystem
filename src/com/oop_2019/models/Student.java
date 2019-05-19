@@ -8,9 +8,7 @@ public class Student extends Person {
 	private int roll;
 	private Subject[] subjects;
 
-	public Student(String id) {
-		this.id = id;
-	}
+	
 
 	public String getGrade() {
 		return grade;

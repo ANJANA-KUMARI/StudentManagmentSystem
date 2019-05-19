@@ -63,7 +63,7 @@
 				password varchar(60),	
 				phone varchar(10),
 				city varchar(10),
-				state_ varchar(10),
+				state varchar(10),
 				zip int,
 				gender char(1),
 				position int,
@@ -177,8 +177,8 @@
 				subjectID int,
 				studentID varchar(6),
 				CONSTRAINT PK_SubStu PRIMARY KEY (subjectId, studentId),
-				CONSTRAINT FK_Subjt FOREIGN KEY (subjectId) REFERENCES Subject (subjectId),
-				CONSTRAINT FK_Stu FOREIGN KEY (studentId) REFERENCES Student (studentId)
+				CONSTRAINT FK_Subjt FOREIGN KEY (subjectId) REFERENCES Subject (subjectId) ON DELETE CASCADE,
+				CONSTRAINT FK_Stu FOREIGN KEY (studentId) REFERENCES Student (studentId) ON DELETE CASCADE
 		)
 		]]>
 		</query>
@@ -276,7 +276,7 @@
 
 		<query id="insert_subject_teacher">
 			<![CDATA[
-				INSERT INTO SubjectTeacher VALUES (?, ?) 
+				INSERT INTO TeacherSubject VALUES (?, ?) 
 			]]>
 		</query>
 		
@@ -335,8 +335,10 @@
 		<!-- Select all teachers -->
 		<query id="all_teachers">
 			<![CDATA[
-				SELECT *
-				FROM teacher
+				SELECT t.teacherId, t.title, t.firstName, t.lastName, t.section, t.birthday
+				,t.email, t.password, t.phone, t.city, t.state, t.zip, t.gender, p.position, t.imageName
+				FROM teacher t, Position p
+				WHERE t.position =p.id
 			]]>
 		</query>
 		
@@ -415,7 +417,7 @@
 		<query id="update_teacher">
 			<![CDATA[
 				UPDATE teacher AS t
-				SET t.title = ?, t.firstName = ?, t.lastName = ?, t.section = ?, t.birthday = ?, t.email = ?, t.phone = ?, t.city = ?, t.state = ?, t.zip = ?, t.gender = ?, t.position, t.imageName = ?
+				SET t.title = ?, t.firstName = ?, t.lastName = ?, t.section = ?, t.birthday = ?, t.email = ?, t.phone = ?, t.city = ?, t.state = ?, t.zip = ?, t.gender = ?, t.position=?, t.imageName = ?
 				WHERE t.teacherID = ?
 			]]>
 		</query>
@@ -424,7 +426,7 @@
 		<query id="update_student">
 			<![CDATA[
 				UPDATE student AS s
-				SET s.firstName = ?, s.lastName = ?, s.section = ?, s.birthday = ?, s.email = ?, s.phone = ?, s.city = ?, s.state = ?, s.zip = ?, s.gender = ?, s.grade, s.roll, s.imageNam = ?
+				SET s.firstName = ?, s.lastName = ?, s.section = ?, s.birthday = ?, s.email = ?, s.phone = ?, s.city = ?, s.state = ?, s.zip = ?, s.gender = ?, s.grade=?, s.roll=?, s.imageName= ?
 				WHERE s.studentID = ?
 			]]>
 		</query>

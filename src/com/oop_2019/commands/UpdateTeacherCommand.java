@@ -48,7 +48,7 @@ public class UpdateTeacherCommand implements ICommand<Boolean> {
 		String birthdayValue = request.getParameter("birthday");
 		Date birthdayDateValue = null;
 		try {
-			birthdayDateValue = new SimpleDateFormat("dd/MM/yyyy").parse(birthdayValue);
+			birthdayDateValue = new SimpleDateFormat("yyyy-MM-dd").parse(birthdayValue);
 		} catch (ParseException e) {
 			errorMsgs.add("Birthday is required");
 			e.printStackTrace();
@@ -59,15 +59,7 @@ public class UpdateTeacherCommand implements ICommand<Boolean> {
 			errorMsgs.add("Email is required");
 		}
 		
-		String passwordValue = request.getParameter("password");
-		if(passwordValue.length() == 0) {
-			errorMsgs.add("Password is required");
-		}
-		
-		String repeatPasswordValue = request.getParameter("repeatPassword");
-		if(repeatPasswordValue.length() == 0) {
-			errorMsgs.add("Password confirm is required");
-		}
+	
 	
 		String phoneNumberValue = request.getParameter("phone");
 		if(phoneNumberValue.length() == 0) {

@@ -15,7 +15,7 @@ public class StudentService implements IStudentService{
 	private static final ISubjectRepository subjectRepository = new SubjectRepository();
 	
 	public void addStudent(Student student) {
-		
+		studentRepository.create(student);
 	}
 
 	@Override

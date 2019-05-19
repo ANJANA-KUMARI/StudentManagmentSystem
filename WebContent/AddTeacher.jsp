@@ -1,5 +1,9 @@
 		<!-- Header -->
-		<jsp:include page="/WEB-INF/view/Header.jsp"></jsp:include>
+		<%@page import="com.oop_2019.commands.GetSubjectAllCommand"%>
+<%@page import="com.oop_2019.models.Subject"%>
+<%@page import="java.util.List"%>
+<%@page import="com.oop_2019.commands.ICommand"%>
+<jsp:include page="/WEB-INF/view/Header.jsp"></jsp:include>
 		<!-- End of Header-->
 
 
@@ -105,12 +109,12 @@
                             <div class="form-group">
                               <label style = "margin-left: 11px; font-weight: bold;">Gender</label>
                               <div class="custom-control custom-radio" style="margin-left: 20px;">
-                                <input type="radio" id="customRadioInline4" name="gender" class="custom-control-input">
+                                <input type="radio" id="customRadioInline4" name="gender" value="M" class="custom-control-input">
                                 <label class="custom-control-label" for="customRadioInline4">Male</label>
                               </div>
                               
                               <div class="custom-control custom-radio" style="margin-left: 20px;">
-                                <input type="radio" id="customRadioInline5" name="gender" class="custom-control-input">
+                                <input type="radio" id="customRadioInline5" value="F" name="gender" class="custom-control-input">
                                 <label class="custom-control-label" for="customRadioInline5">Female</label>
                               </div>
                             </div>
@@ -127,16 +131,25 @@
                               <div class="col my-3">
                                   <div style="padding-left: 0px;" class="custom-control custom-checkbox">
                                     <label style="font-weight: bold; margin-right: 43px">Teach</label>
+                                     	
+                                     <%
+                                     	ICommand<List<Subject>> command= new GetSubjectAllCommand();
+                                     	
+                                     	List<Subject> subjects =command.execute(request, response);
+                                     	
+                                     %>
+                                     
+                                     <% for(Subject subject:subjects){ %>
                                     
-                                      <input type="checkbox" class="form-check-input" name="customCheck1">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck1">Buddhist</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck1" value="option1">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck2">Sinhala</label>
-                                    
+                                      <input type="checkbox" class="form-check-input" name="subjectIds" value="<%=subject.getId() %>" >
+                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck1"><%=subject.getSubjectName() %></label>
+                                     
+                                     <% } %>
+                                  
                                     </div>
                               </div>
                               
-                              <input type="hidden" name="subjectIds" value="" />
+                              
       
                               <div class="col-8">
                                   <label style="font-weight: bold;">Profile Photo</label>

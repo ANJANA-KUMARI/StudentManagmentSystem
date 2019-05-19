@@ -46,9 +46,8 @@
 				<h6 class="collapse-header">Teacher Components:</h6>
 				<!-- <a class="collapse-item" href="buttons.html">Buttons</a>
           <a class="collapse-item" href="cards.html">Cards</a> -->
-				<a class="collapse-item" href="AddTeacher.jsp">Add Teacher</a> <a
-					class="collapse-item" href="UpdateTeacher.jsp">Edit Teacher</a> <a
-					class="collapse-item" href="ViewTeacher.jsp">View Teacher</a> <a
+				<a class="collapse-item" href="AddTeacher.jsp">Add Teacher</a> 
+				 <a
 					class="collapse-item" href="ViewAllTeachers.jsp">View all
 					Teachers</a>
 			</div></li>
@@ -67,9 +66,9 @@
             <a class="collapse-item" href="buttons.html">Buttons</a>
             <a class="collapse-item" href="cards.html">Cards</a> -->
 
-				<a class="collapse-item" href="AddStudent.jsp">Add Student</a> <a
-					class="collapse-item" href="UpdateStudent.jsp">Edit Student</a> <a
-					class="collapse-item" href="ViewStudent.jsp">View Student</a>
+				<a class="collapse-item" href="AddStudent.jsp">Add Student</a> 
+					<a
+					class="collapse-item" href="ViewStudent.jsp">View All Students</a>
 				<!-- <a class="collapse-item" href="viewAllStudents.html">View all Students</a> -->
 			</div>
 		</div></li>
@@ -85,7 +84,7 @@
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">Subject Components:</h6>
 				<a class="collapse-item" href="AddSubject.jsp">Add Subject</a>  <a
-					class="collapse-item" href="ViewSubject.jsp">View Subjects</a>
+					class="collapse-item" href="ViewSubject.jsp">View All Subjects</a>
 			</div>
 		</div></li>
 
@@ -99,8 +98,8 @@
 			aria-labelledby="headingExams" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">Exams Components:</h6>
-				<a class="collapse-item" href="AddExam.jsp">Add Exam</a> <a
-					class="collapse-item" href="UpdateExam.jsp">Edit Exam</a> <a
+				<a class="collapse-item" href="AddExam.jsp">Add Exam</a> 
+					<a
 					class="collapse-item" href="ViewExam.jsp">View Exam Details</a>
 			</div>
 		</div></li>

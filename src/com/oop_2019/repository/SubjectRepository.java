@@ -195,8 +195,8 @@ public class SubjectRepository extends RepositoryBase implements ISubjectReposit
 
 			dbConnection.setAutoCommit(false);
 
-			preparedStatement.setInt(1, subjectId);
-			preparedStatement.setString(2, teacherId);
+			preparedStatement.setString(1, teacherId);
+			preparedStatement.setInt(2, subjectId);
 
 			preparedStatement.execute();
 

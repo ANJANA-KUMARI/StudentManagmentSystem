@@ -6,6 +6,14 @@
     <servlet-class>com.oop_2019.servlets.AddStudentServlet</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>UpdateStudentServlet</servlet-name>
+    <servlet-class>com.oop_2019.servlets.UpdateStudentServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteStudentServlet</servlet-name>
+    <servlet-class>com.oop_2019.servlets.DeleteStudentServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.oop_2019.servlets.LoginServlet</servlet-class>
   </servlet>
@@ -16,6 +24,14 @@
   <servlet>
     <servlet-name>AddTeacherServlet</servlet-name>
     <servlet-class>com.oop_2019.servlets.AddTeacherServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateTeacherServlet</servlet-name>
+    <servlet-class>com.oop_2019.servlets.UpdateTeacherServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteTeacherServlet</servlet-name>
+    <servlet-class>com.oop_2019.servlets.DeleteTeacherServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>AddSubjectServlet</servlet-name>
@@ -35,11 +51,27 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AddStudentServlet</servlet-name>
-    <url-pattern>/AddStudentServlet</url-pattern>
+    <url-pattern>/AddStudent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateStudentServlet</servlet-name>
+    <url-pattern>/UpdateStudent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteStudentServlet</servlet-name>
+    <url-pattern>/DeleteStudent</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AddTeacherServlet</servlet-name>
     <url-pattern>/AddTeacher</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateTeacherServlet</servlet-name>
+    <url-pattern>/UpdateTeacher</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteTeacherServlet</servlet-name>
+    <url-pattern>/DeleteTeacher</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AddSubjectServlet</servlet-name>

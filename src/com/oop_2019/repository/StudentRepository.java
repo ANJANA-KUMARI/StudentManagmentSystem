@@ -5,12 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.oop_2019.models.Student;
 import com.oop_2019.models.Teacher;
 import com.oop_2019.util.CommonConstants;
 import com.oop_2019.util.ModelUtil;
 import com.oop_2019.util.QueryUtil;
-import com.sun.istack.internal.logging.Logger;
+
 
 /**
  * @author Anjana
@@ -23,9 +26,10 @@ public class StudentRepository extends RepositoryBase implements IRepository<Stu
 	@Override
 	public void create(Student entity) {
 		try {
+			entity.setId(ModelUtil.getNextId(CommonConstants.PREFIX_STUDENT_ID, this.getIds()));
+			log.log(Level.INFO, "ID => " + entity.getId() );
 			openDBConnection();
 			
-			entity.setId(ModelUtil.getNextId(CommonConstants.PREFIX_STUDENT_ID, this.getIds()));
 
 			preparedStatement = dbConnection.prepareStatement(QueryUtil
 					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_ID_INSERT_STUDENT));
@@ -115,7 +119,8 @@ public class StudentRepository extends RepositoryBase implements IRepository<Stu
 			preparedStatement.setString(13, entity.getImage());
 			preparedStatement.setString(14, entity.getId());
 
-			preparedStatement.execute();
+			log.log(Level.INFO, "SQL " + preparedStatement.toString());
+			preparedStatement.executeUpdate();
 
 			dbConnection.commit();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -185,7 +190,7 @@ public class StudentRepository extends RepositoryBase implements IRepository<Stu
 			openDBConnection();
 
 			preparedStatement = dbConnection.prepareStatement(QueryUtil
-					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_IS_GET_STUDENT_IDS));
+					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_ID_GET_STUDENT));
 
 			preparedStatement.setString(1, id.toString());
 

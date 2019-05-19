@@ -66,7 +66,7 @@ public class TeacherService implements ITeacherService {
 		
 		if(PasswordUtil.verifyPassword(password, encryptedPwd)) {
 			System.out.println("Valid teacher");
-			Teacher teacher = teacherRepository.get(email);
+			Teacher teacher = teacherRepository.getByEmail(email);
 			return teacher;
 		}
 		return null;

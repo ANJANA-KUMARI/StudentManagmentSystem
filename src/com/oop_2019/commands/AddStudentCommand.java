@@ -47,7 +47,7 @@ public class AddStudentCommand implements ICommand<Boolean> {
 		Date birthdayDateValue = null;
 	
 		try {
-			birthdayDateValue = new SimpleDateFormat("dd/MM/yyyy").parse(birthdayValue);
+			birthdayDateValue = new SimpleDateFormat("yyyy-MM-dd").parse(birthdayValue);
 		} catch (ParseException e) {
 			errorList.add("Birthday is required");
 			e.printStackTrace();
@@ -88,7 +88,7 @@ public class AddStudentCommand implements ICommand<Boolean> {
 			errorList.add("Grade is required");
 		}
 		
-		int rollValue = Integer.parseInt( request.getParameter("roll"));
+
 		
 		String imageValue = request.getParameter("image");
 		
@@ -97,7 +97,7 @@ public class AddStudentCommand implements ICommand<Boolean> {
 			return false;
 		}
 		
-		Student student = new Student(null);
+		Student student = new Student();
 
 		student.setFirstName(firstNameValue);
 		student.setLastName(lastNameValue);
@@ -110,7 +110,7 @@ public class AddStudentCommand implements ICommand<Boolean> {
 		student.setZip(zipValue);
 		student.setGender(genderValue);
 		student.setGrade(gradeValue);
-		student.setRoll(rollValue);
+		
 		student.setImage(imageValue);
 		
 		
@@ -118,7 +118,7 @@ public class AddStudentCommand implements ICommand<Boolean> {
 		
 		studentService.addStudent(student);
 		
-		String[] subjectIds = request.getParameter("subjectIds").split(",");
+		String[] subjectIds = request.getParameterValues("subjectIds");
 		ISubjectService subjectService = new SubjectService();
 		
 		for (String id : subjectIds) {

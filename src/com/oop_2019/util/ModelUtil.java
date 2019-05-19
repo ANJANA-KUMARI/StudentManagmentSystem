@@ -40,13 +40,13 @@ public class ModelUtil {
 		teacher.setSection(result.getString(5));
 		teacher.setBirthday(result.getDate(6));
 		teacher.setEmail(result.getString(7));		
-		teacher.setPhone(result.getString(8));
-		teacher.setCity(result.getString(9));
-		teacher.setState(result.getString(10));
-		teacher.setZip(result.getString(11));
-		teacher.setGender(result.getString(12));
-		teacher.setPosition(result.getString(13));
-		teacher.setImage(result.getString(14));
+		teacher.setPhone(result.getString(9));
+		teacher.setCity(result.getString(10));
+		teacher.setState(result.getString(11));
+		teacher.setZip(result.getString(12));
+		teacher.setGender(result.getString(13));
+		teacher.setPosition(result.getString(14));
+		teacher.setImage(result.getString(15));
 		
 		
 		return teacher;
@@ -66,8 +66,8 @@ public class ModelUtil {
 	 */
 	
 	public static Student getStudentFromSQLResult(ResultSet result) throws SQLException {
-		Student student = new Student(result.getString(1));
-		
+		Student student = new Student();
+		student.setId(result.getString(1));
 		
 		student.setFirstName(result.getString(2));
 		student.setLastName(result.getString(3));
