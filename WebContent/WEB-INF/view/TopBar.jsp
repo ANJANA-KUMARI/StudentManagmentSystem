@@ -173,7 +173,11 @@
                 <% 
                 	
                 	Teacher t = (Teacher)session.getAttribute(CommonConstants.SESSION_ID_LOGGED_IN_TEACHER);
-                	
+                
+                	if(t == null){
+                		response.sendRedirect("Login.jsp");
+                		return;
+                	}
                 	
                 %>
                 <%=t.getFirstName() %>
