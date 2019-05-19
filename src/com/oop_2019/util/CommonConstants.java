@@ -16,7 +16,7 @@ public class CommonConstants {
 	public static final String PROPERTY_FILE = "config.properties";
 	
 	/** Constant for full path of the sql query file */
-	public static final String QUERY_FULL_PATH = System.getProperty("catalina.base") + "\\wtpwebapps\\oop_2019\\WEB-INF\\SIMSQuery.xml"; 
+	public static final String QUERY_FULL_PATH = System.getProperty("catalina.base") + "\\wtpwebapps\\StudentManagmentSystem\\WEB-INF\\SIMSQuery.xml"; 
 	
 	/** Constant for queryGroup tag in SIMSQuery.xml */
 	public static final String TAG_NAME_QUERY_GROUP = "Query-group";

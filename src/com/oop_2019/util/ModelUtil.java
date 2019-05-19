@@ -34,19 +34,19 @@ public class ModelUtil {
 	public static Teacher getTeacherFromSQLResult(ResultSet result) throws SQLException {
 		Teacher teacher = new Teacher(result.getString(1));
 		
-		
-		teacher.setFirstName(result.getString(2));
-		teacher.setLastName(result.getString(3));
-		teacher.setSection(result.getString(4));
-		teacher.setBirthday(result.getDate(5));
-		teacher.setEmail(result.getString(6));		
-		teacher.setPhone(result.getString(7));
-		teacher.setCity(result.getString(8));
-		teacher.setState(result.getString(9));
-		teacher.setZip(result.getString(10));
-		teacher.setGender(result.getString(11));
-		teacher.setPosition(result.getString(12));
-		teacher.setImage(result.getString(13));
+		teacher.setTitle(result.getString(2));
+		teacher.setFirstName(result.getString(3));
+		teacher.setLastName(result.getString(4));
+		teacher.setSection(result.getString(5));
+		teacher.setBirthday(result.getDate(6));
+		teacher.setEmail(result.getString(7));		
+		teacher.setPhone(result.getString(8));
+		teacher.setCity(result.getString(9));
+		teacher.setState(result.getString(10));
+		teacher.setZip(result.getString(11));
+		teacher.setGender(result.getString(12));
+		teacher.setPosition(result.getString(13));
+		teacher.setImage(result.getString(14));
 		
 		
 		return teacher;

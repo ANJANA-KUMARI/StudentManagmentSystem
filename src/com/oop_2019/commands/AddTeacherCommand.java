@@ -47,7 +47,7 @@ public class AddTeacherCommand implements ICommand<Boolean> {
 		String birthdayValue = request.getParameter("birthday");
 		Date birthdayDateValue = null;
 		try {
-			birthdayDateValue = new SimpleDateFormat("dd/MM/yyyy").parse(birthdayValue);
+			birthdayDateValue = new SimpleDateFormat("yyyy-MM-dd").parse(birthdayValue);
 		} catch (ParseException e) {
 			errorMsgs.add("Birthday is required");
 			e.printStackTrace();
@@ -93,10 +93,7 @@ public class AddTeacherCommand implements ICommand<Boolean> {
 			errorMsgs.add("Gender is required");
 		}
 		
-		String gradeValue = request.getParameter("grade");
-		if(gradeValue.length() == 0) {
-			errorMsgs.add("Grade is required");
-		}
+		
 		
 		String positionValue = request.getParameter("position");
 		
@@ -130,10 +127,13 @@ public class AddTeacherCommand implements ICommand<Boolean> {
 		// add subjects 
 		String[] subjectIds = request.getParameter("subjectIds").split(",");
 		
+		if(subjectIds.length > 0) {
+			
 		ISubjectService subjectService = new SubjectService();
 		
 		for (String id : subjectIds) {
 			subjectService.addSubjectToTeacher(Integer.parseInt(id), newTeacher.getId());
+		}
 		}
 	
 		return true;

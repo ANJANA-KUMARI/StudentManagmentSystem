@@ -10,8 +10,6 @@ package com.oop_2019.util;
  */
 public class PasswordUtil {
 	
-
-	
 	/**
 	 * This method will encrypt the given password
 	 * @param originalPWD password to encrypt
@@ -19,6 +17,7 @@ public class PasswordUtil {
 	 */
 	public static String encryptPWD(String originalPWD) {
 		return org.mindrot.jbcrypt.BCrypt.hashpw(originalPWD, org.mindrot.jbcrypt.BCrypt.gensalt());
+		
 	}
 	
 	

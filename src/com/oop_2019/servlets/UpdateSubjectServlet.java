@@ -35,9 +35,8 @@ public class UpdateSubjectServlet extends HttpServlet {
 
 		ICommand<Boolean> command = new UpdateSubjectCommand();
 		
-		if(command.execute(request, response)) {
-			// TODO 
-			response.sendRedirect("");
+		if(command.execute(request, response)) { 
+			response.sendRedirect("ViewSubject.jsp");
 		}else {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/UpdateSubject.jsp");
 			dispatcher.forward(request, response);

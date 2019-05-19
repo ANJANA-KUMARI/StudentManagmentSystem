@@ -1,5 +1,20 @@
+<%@page import="com.oop_2019.commands.GetAllTeachersCommand"%>
+<%@page import="com.oop_2019.models.Teacher"%>
+<%@page import="java.util.List"%>
+<%@page import="com.oop_2019.commands.GetSubjectCommand"%>
+<%@page import="com.oop_2019.models.Subject"%>
+<%@page import="com.oop_2019.commands.ICommand"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%
+    	
+    	
+    	ICommand<Subject> command = new GetSubjectCommand();
+    
+    	Subject subject = command.execute(request, response);
+    
+    %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,25 +70,42 @@
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800 text-center">Update Subject</h1>
             <br>
-            <form>
+            <form method="POST" action="UpdateSubject">
+            	<input type="hidden" name="subjectId" value="<%=subject.getId() %>" />
               <div class="form-row align-items-center mb-3">
                   <div>
                      <label class="mr-sm-2" for="inlineFormCustomSelect" style="font-weight: bold;">Subject Name</label>
-                     <input type="text" class="form-control form-control-user" name="subjectName" placeholder="Subject Name">
+                     <input type="text" class="form-control form-control-user" name="subjectName" placeholder="Subject Name" value="<%= subject.getSubjectName()%>">
                   </div>
 
                   <div style="margin-left: 50px;">
                       <label class="mr-sm-2" for="inlineFormCustomSelect" style="font-weight: bold;">Section</label>
-                      <input type="text" class="form-control form-control-user" name="section" placeholder="2016/2017">
+                      <input type="text" class="form-control form-control-user" name="section" placeholder="2016/2017" value="<%= subject.getSection()%>">
                    </div>
 
                    <div style="margin-left: 50px; font-weight: bold;">
                       <label class="mr-sm-2" for="inlineFormCustomSelect">Subject Head</label>
-                      <select class="custom-select mr-sm-2" name="subjectHead">
-                        <option selected>Choose...</option>
-                          <option value="1">Lakmal</option>
-                          <option value="2">Nuwan</option>
-                          <option value="3">Brawo</option>
+                      <select class="custom-select mr-sm-2" name="subjectHeadId">
+                              <% 
+                      	ICommand<List<Teacher>> getTeachersCommand = new GetAllTeachersCommand();
+                        List<Teacher> teachers = getTeachersCommand.execute(request, response);
+                      %>
+                      
+                      <% for(Teacher teacher: teachers){ %>
+                      	  <option value="<%=teacher.getId() %>" 
+                      	  <% 
+                      	  	Boolean isTeacher =teacher.getId().equals(subject.getSubjectHead().getId()); 
+                      	  	if(isTeacher){ 
+                      	  		out.print(teacher.getId());
+                      	  		} 
+                      	  %> 
+                      	  > 
+                      	  	
+                      	  	<%=teacher.getFirstName() %>
+                      	  	</option>
+                      
+                      <%} %>
+                       
                       </select>
                    </div>
 
@@ -102,13 +134,14 @@
   
               <div class="form-group shadow-textarea" style="font-weight: bold;">
                   <label for="exampleFormControlTextarea6">Description</label>
-                  <textarea class="form-control z-depth-1" name="description" rows="3" placeholder="Subject description"></textarea>
+                  <textarea class="form-control z-depth-1" name="description" rows="3" placeholder="Subject description">
+                  	<%=subject.getDescription() %>
+                  </textarea>
                 </div>
           
   <br><br>
                 <div class="form-row col-lg-2">
-                  <input type="submit" class="btn btn-primary btn-user btn-block" value="Update">
-                  <input type="button" class="btn btn-primary btn-user btn-block" value="Delete">
+                  <input type="submit" class="btn btn-primary btn-user btn-block" value="Update">                  
                 </div>
             </form>
         </div>

@@ -1,3 +1,7 @@
+<%@page import="com.oop_2019.models.Teacher"%>
+<%@page import="java.util.List"%>
+<%@page import="com.oop_2019.commands.GetAllTeachersCommand"%>
+<%@page import="com.oop_2019.commands.ICommand"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -57,7 +61,7 @@
             <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800 text-center">Add Subject</h1>
             <br>
-            <form>
+            <form method="POST" action="AddSubject">
               <div class="form-row align-items-center mb-3">
                   <div>
                      <label class="mr-sm-2" for="inlineFormCustomSelect" style="font-weight: bold;">Subject Name</label>
@@ -71,11 +75,21 @@
 
                    <div style="margin-left: 50px; font-weight: bold;">
                       <label class="mr-sm-2" for="inlineFormCustomSelect">Subject Head</label>
-                      <select class="custom-select mr-sm-2" name="subjectHead">
-                        <option selected>Choose...</option>
+                      <select class="custom-select mr-sm-2" name="subjectHeadId">
+                      <% 
+                      	ICommand<List<Teacher>> command = new GetAllTeachersCommand();
+                        List<Teacher> teachers = command.execute(request, response);
+                      %>
+                      
+                      <% for(Teacher teacher: teachers){ %>
+                      	  <option value="<%=teacher.getId() %>"><%=teacher.getFirstName() %></option>
+                      
+                      <%} %>
+                       
+                       <!--  <option selected>Choose...</option>
                           <option value="1">Lakmal</option>
                           <option value="2">Nuwan</option>
-                          <option value="3">Brawo</option>
+                          <option value="3">Brawo</option> -->
                       </select>
                    </div>
 

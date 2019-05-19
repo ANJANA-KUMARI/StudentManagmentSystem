@@ -4,6 +4,8 @@
 package com.oop_2019.commands;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +21,8 @@ import com.oop_2019.services.SubjectService;
  *
  */
 public class AddSubjectCommand implements ICommand<Boolean> {
+	
+	private static Logger log = Logger.getLogger(AddSubjectCommand.class.getName(), null);
 
 	@Override
 	public Boolean execute(HttpServletRequest request, HttpServletResponse response) {
@@ -45,6 +49,7 @@ public class AddSubjectCommand implements ICommand<Boolean> {
 		
 		if(errorList.size() > 0) {
 			request.setAttribute("errorMsgs", errorList);
+			log.log(Level.WARNING, "Has errors in AddSubjectCommand => ",errorList);
 			return false;
 		}
 		

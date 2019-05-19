@@ -1,3 +1,7 @@
+<%@page import="com.oop_2019.models.Subject"%>
+<%@page import="java.util.List"%>
+<%@page import="com.oop_2019.commands.GetSubjectAllCommand"%>
+<%@page import="com.oop_2019.commands.ICommand"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -88,16 +92,37 @@
                   <th>Subject Administrator</th>
                   <th>Section</th>
                   <th>Description</th>
+                  <th>Operations</th>
               </tr>
             </thead>
             <tbody>
+            <%
+            	ICommand<List<Subject>> command = new GetSubjectAllCommand();
+            	List<Subject> subjects = command.execute(request, response);
+            %>
+            
+            <% for(Subject subject: subjects){ %>
                 <tr>
-                    <td>S001</td>
-                    <td>System Architect</td>
-                    <td>Tiger Nixon</td>
-                    <td>2019/2020</td>
-                    <td>Edinburgh</td>
+                    <td><%=subject.getId() %></td>
+                    <td><%=subject.getSubjectName() %></td>
+                    <td><%=subject.getSubjectHead().getFirstName() %></td>
+                    <td><%=subject.getSection() %></td>
+                    <td><%=subject.getDescription() %></td>
+                    
+                    <td>
+                    <a class="btn btn-sm btn-primary" href="UpdateSubject.jsp?subjectId=<%=subject.getId()%>">
+                    	Edit
+                    </a>	
+                    <form method="POST" action="DeleteSubject" style="display:inline-block">
+                    	<input  type="hidden" name="subjectId" value="<%=subject.getId()%>" /> 
+                    <button class="btn btn-sm btn-danger" type="submit">
+                    	Delete
+                    </button>	
+                    </form>
+                    </td>
+                    
                   </tr>
+                <% } %>
             </tbody>
           </table>
         </div>

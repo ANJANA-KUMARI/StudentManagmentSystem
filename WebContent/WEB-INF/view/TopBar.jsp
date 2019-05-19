@@ -1,3 +1,5 @@
+<%@page import="com.oop_2019.models.Teacher"%>
+<%@page import="com.oop_2019.util.CommonConstants"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -166,7 +168,16 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Anjana Kumari</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                
+                <% 
+                	
+                	Teacher t = (Teacher)session.getAttribute(CommonConstants.SESSION_ID_LOGGED_IN_TEACHER);
+                	
+                	
+                %>
+                <%=t.getFirstName() %>
+                </span>
                 <img class="img-profile rounded-circle"
                   src="https://ddnel5rbiy9cg.cloudfront.net/83a4f80d-cbe9-46b4-a25c-58f049142c0d/5659cc01-87d0-4110-87e9-cc6904ff1230.jpg">
               </a>
@@ -184,7 +195,7 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item external" href="Logout" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>

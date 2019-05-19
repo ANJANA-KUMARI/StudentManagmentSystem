@@ -9,7 +9,7 @@
 	<!-- Sidebar - Brand -->
 	<a
 		class="sidebar-brand d-flex align-items-center justify-content-center"
-		href="adminIndex.html">
+		href="Dashboard.jsp">
 		<div class="sidebar-brand-icon rotate-n-0">
 			<i class="fas fa-user-cog"></i>
 		</div>
@@ -20,7 +20,7 @@
 	<hr class="sidebar-divider my-0">
 
 	<!-- Nav Item - Dashboard -->
-	<li class="nav-item"><a class="nav-link" href="adminIndex.html">
+	<li class="nav-item"><a class="nav-link" href="Dashboard.jsp">
 			<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 	</a></li>
 
@@ -33,7 +33,7 @@
       </div> -->
 
 	<!-- Nav Item - Teacher Collapse Menu -->
-	<li class="nav-item"><a class="nav-link collapsed" href="#"
+	<li class="nav-item"><a class="nav-link collapsed" href="ViewAllTeachers.jsp"
 		data-toggle="collapse" data-target="#collapseTeacher"
 		aria-expanded="true" aria-controls="collapseTeacher"> <i
 			class="fas fa-chalkboard-teacher"></i> <!-- <span>Components</span> -->
@@ -46,15 +46,15 @@
 				<h6 class="collapse-header">Teacher Components:</h6>
 				<!-- <a class="collapse-item" href="buttons.html">Buttons</a>
           <a class="collapse-item" href="cards.html">Cards</a> -->
-				<a class="collapse-item" href="addTeacher.html">Add Teacher</a> <a
-					class="collapse-item" href="editTeacher.html">Edit Teacher</a> <a
-					class="collapse-item" href="viewTeacher.html">View Teacher</a> <a
-					class="collapse-item" href="viewAllTeachers.html">View all
+				<a class="collapse-item" href="AddTeacher.jsp">Add Teacher</a> <a
+					class="collapse-item" href="UpdateTeacher.jsp">Edit Teacher</a> <a
+					class="collapse-item" href="ViewTeacher.jsp">View Teacher</a> <a
+					class="collapse-item" href="ViewAllTeachers.jsp">View all
 					Teachers</a>
 			</div></li>
 
 	<!-- Nav Item - Student Collapse Menu -->
-	<li class="nav-item active"><a class="nav-link collapsed" href="#"
+	<li class="nav-item active"><a class="nav-link collapsed" href="ViewStudent.jsp"
 		data-toggle="collapse" data-target="#collapseStudent"
 		aria-expanded="true" aria-controls="collapseStudent"> <i
 			class="fas fa-user-graduate"></i> <span>Student</span>
@@ -67,15 +67,15 @@
             <a class="collapse-item" href="buttons.html">Buttons</a>
             <a class="collapse-item" href="cards.html">Cards</a> -->
 
-				<a class="collapse-item" href="addStudent.html">Add Student</a> <a
-					class="collapse-item" href="editStudent.html">Edit Student</a> <a
-					class="collapse-item" href="viewStudent.html">View Student</a>
+				<a class="collapse-item" href="AddStudent.jsp">Add Student</a> <a
+					class="collapse-item" href="UpdateStudent.jsp">Edit Student</a> <a
+					class="collapse-item" href="ViewStudent.jsp">View Student</a>
 				<!-- <a class="collapse-item" href="viewAllStudents.html">View all Students</a> -->
 			</div>
 		</div></li>
 
 	<!-- Nav Item - Subject Collapse Menu -->
-	<li class="nav-item"><a class="nav-link collapsed" href="#"
+	<li class="nav-item"><a class="nav-link collapsed" href="ViewSubject.jsp"
 		data-toggle="collapse" data-target="#collapseSubject"
 		aria-expanded="true" aria-controls="collapseSubject"> <i
 			class="fas fa-book"></i> <span>Subject</span>
@@ -84,14 +84,13 @@
 			aria-labelledby="headingSubject" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">Subject Components:</h6>
-				<a class="collapse-item" href="addSubject.html">Add Subject</a> <a
-					class="collapse-item" href="editSubject.html">Edit Subject</a> <a
-					class="collapse-item" href="viewSubjects.html">View Subjects</a>
+				<a class="collapse-item" href="AddSubject.jsp">Add Subject</a>  <a
+					class="collapse-item" href="ViewSubject.jsp">View Subjects</a>
 			</div>
 		</div></li>
 
 	<!-- Nav Item - Exams Collapse Menu -->
-	<li class="nav-item"><a class="nav-link collapsed" href="#"
+	<li class="nav-item"><a class="nav-link collapsed" href="ViewExam.jsp"
 		data-toggle="collapse" data-target="#collapseExams"
 		aria-expanded="true" aria-controls="collapseExams"> <i
 			class="fas fa-pen"></i> <span>Exams</span>
@@ -100,23 +99,9 @@
 			aria-labelledby="headingExams" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">Exams Components:</h6>
-				<a class="collapse-item" href="addExam.html">Add Exam</a> <a
-					class="collapse-item" href="editExam.html">Edit Exam</a> <a
-					class="collapse-item" href="viewExams.html">View Exam Details</a>
-			</div>
-		</div></li>
-
-	<!-- Nav Item - Reports Collapse Menu -->
-	<li class="nav-item"><a class="nav-link collapsed" href="#"
-		data-toggle="collapse" data-target="#collapseReport"
-		aria-expanded="true" aria-controls="collapseReport"> <i
-			class="fas fa-chart-line"></i> <span>Report</span>
-	</a>
-		<div id="collapseReport" class="collapse"
-			aria-labelledby="headingReport" data-parent="#accordionSidebar">
-			<div class="bg-white py-2 collapse-inner rounded">
-				<h6 class="collapse-header">Report Components:</h6>
-				<a class="collapse-item" href="viewReport.html">View Report</a>
+				<a class="collapse-item" href="AddExam.jsp">Add Exam</a> <a
+					class="collapse-item" href="UpdateExam.jsp">Edit Exam</a> <a
+					class="collapse-item" href="ViewExam.jsp">View Exam Details</a>
 			</div>
 		</div></li>
 

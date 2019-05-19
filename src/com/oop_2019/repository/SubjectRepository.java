@@ -5,13 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.oop_2019.models.Student;
 import com.oop_2019.models.Subject;
 import com.oop_2019.util.CommonConstants;
 import com.oop_2019.util.ModelUtil;
 import com.oop_2019.util.QueryUtil;
-import com.sun.istack.internal.logging.Logger;
+
 
 /**
  * @author Anjana
@@ -136,7 +137,7 @@ public class SubjectRepository extends RepositoryBase implements ISubjectReposit
 			openDBConnection();
 
 			preparedStatement = dbConnection.prepareStatement(QueryUtil
-					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_IS_GET_SUBJECT_IDS));
+					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_ID_GET_SUBJECT));
 
 			preparedStatement.setInt(1, Integer.parseInt(id.toString()));
 
@@ -245,7 +246,7 @@ public class SubjectRepository extends RepositoryBase implements ISubjectReposit
 			preparedStatement = dbConnection.prepareStatement(QueryUtil
 					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_ID_SUBJECTS_OF_STUDENT));
 
-			preparedStatement.setInt(1, Integer.parseInt(studentId));
+			preparedStatement.setString(1, studentId);
 
 			ResultSet results = preparedStatement.executeQuery();
 
@@ -278,7 +279,7 @@ public class SubjectRepository extends RepositoryBase implements ISubjectReposit
 			preparedStatement = dbConnection.prepareStatement(QueryUtil
 					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_ID_SUBJECTS_OF_TEACHER));
 
-			preparedStatement.setInt(1, Integer.parseInt(teacherId));
+			preparedStatement.setString(1, teacherId);
 
 			ResultSet results = preparedStatement.executeQuery();
 

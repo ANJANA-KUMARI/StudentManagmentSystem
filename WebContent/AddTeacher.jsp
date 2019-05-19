@@ -28,7 +28,7 @@
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Add Teacher</h1>
                     </div>
-                    <form class="user">
+                    <form class="user" method="POST" action="AddTeacher">
 
                         <div class="col-sm-2 my-3">
                             <label style="font-weight: bold;">Title</label>
@@ -127,38 +127,16 @@
                               <div class="col my-3">
                                   <div style="padding-left: 0px;" class="custom-control custom-checkbox">
                                     <label style="font-weight: bold; margin-right: 43px">Teach</label>
+                                    
                                       <input type="checkbox" class="form-check-input" name="customCheck1">
                                       <label style="margin-right: 30px;" class="form-check-label" for="customCheck1">Buddhist</label>
                                       <input type="checkbox" class="form-check-input" name="customCheck1" value="option1">
                                       <label style="margin-right: 30px;" class="form-check-label" for="customCheck2">Sinhala</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck2" value="option2">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck3">English</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck3" value="option3">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck4">Maths</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck4" value="option4">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck5">Buddhist</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck5" value="option5">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck6">Sinhala</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck6" value="option6">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck7">English</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck7" value="option7">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck8">Maths</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck8" value="option8">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck9">Buddhist</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck9" value="option9">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck10">Sinhala</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck10" value="option10">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck11">English</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck11" value="option11  ">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck12">Maths</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck12" value="option12  ">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck10">Sinhala</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck13" value="option13">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck11">English</label>
-                                      <input type="checkbox" class="form-check-input" name="customCheck14" value="option14  ">
-                                      <label style="margin-right: 30px;" class="form-check-label" for="customCheck12">Maths</label>
+                                    
                                     </div>
                               </div>
+                              
+                              <input type="hidden" name="subjectIds" value="" />
       
                               <div class="col-8">
                                   <label style="font-weight: bold;">Profile Photo</label>

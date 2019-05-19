@@ -46,10 +46,10 @@ public class AddSubjectServlet extends HttpServlet {
 		
 		if(command.execute(request, response)) {
 			// TODO redirect to subject list
-			response.sendRedirect("");
+			response.sendRedirect("ViewSubject.jsp");
 		}else {
 			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/ListEmployees.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/AddSubject.jsp");
 			dispatcher.forward(request, response);
 		}
 		

@@ -54,7 +54,7 @@ public class UpdateSubjectCommand implements ICommand<Boolean> {
 		newSubject.setDescription(descriptionValue);
 
 		ISubjectService subjectService = new SubjectService();
-		subjectService.addSubject(newSubject);
+		subjectService.updateSubject(newSubject);
 		
 		return true;
 

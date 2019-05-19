@@ -39,8 +39,8 @@ public class DeleteSubjectServlet extends HttpServlet {
 		Boolean deleteStatus = command.execute(request, response);
 
 		if (deleteStatus) {
-			// TODO redirect to SubjectList
-			response.sendRedirect("");
+
+			response.sendRedirect("ViewSubject.jsp");
 		} else {
 			request.setAttribute("error_msg", "Failed to delete the subject!");
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/SubjectList.jsp");

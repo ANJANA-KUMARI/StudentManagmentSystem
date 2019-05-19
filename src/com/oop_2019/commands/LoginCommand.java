@@ -25,6 +25,7 @@ public class LoginCommand implements ICommand<Boolean>{
 		ITeacherService teacherService = new TeacherService();
 		
 		Teacher loggedInTeacher = teacherService.loginTeacher(email, password);
+		System.out.println("Got teacher => " + loggedInTeacher);
 		if(loggedInTeacher != null) {
 			
 			// set the session

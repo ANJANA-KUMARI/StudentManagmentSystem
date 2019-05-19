@@ -31,7 +31,7 @@ public class TeacherService implements ITeacherService {
 		ArrayList<Teacher> list = (ArrayList<Teacher>)teacherRepository.getAll();
 		
 		for (Teacher teacher : list) {
-			Subject[] subjects = subjectRepository.getSubjectsOfStudent(teacher.getId()).toArray(new Subject[0]);
+			Subject[] subjects = subjectRepository.getSubjectsOfTeacher(teacher.getId()).toArray(new Subject[0]);
 			teacher.setSubjects(subjects);
 		}
 		return list;
@@ -62,8 +62,14 @@ public class TeacherService implements ITeacherService {
 	@Override
 	public Teacher loginTeacher(String email, String password) {
 		
-		Teacher teacher = teacherRepository.get(email, password);
-		return teacher;
+		String encryptedPwd = teacherRepository.getPassword(email);
+		
+		if(PasswordUtil.verifyPassword(password, encryptedPwd)) {
+			System.out.println("Valid teacher");
+			Teacher teacher = teacherRepository.get(email);
+			return teacher;
+		}
+		return null;
 	}
 	
 

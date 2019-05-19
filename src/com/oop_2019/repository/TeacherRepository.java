@@ -5,12 +5,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 
 import com.oop_2019.models.Teacher;
 import com.oop_2019.util.CommonConstants;
 import com.oop_2019.util.ModelUtil;
 import com.oop_2019.util.QueryUtil;
-import com.sun.istack.internal.logging.Logger;
+
 
 /**
  * @author Anjana
@@ -221,7 +225,7 @@ public class TeacherRepository extends RepositoryBase implements ITeacherReposit
 			openDBConnection();
 
 			preparedStatement = dbConnection.prepareStatement(QueryUtil
-					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_IS_GET_TEACHER_IDS));
+					.getQueryByID(CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_ID_GET_TEACHER));
 
 			preparedStatement.setString(1, id.toString());
 
@@ -281,23 +285,26 @@ public class TeacherRepository extends RepositoryBase implements ITeacherReposit
 	}
 
 	@Override
-	public Teacher get(String email, String password) {
+	public String getPassword(String email) {
 
-		Teacher teacher = null;
+		String password = null;
 
 		try {
 			openDBConnection();
-
+			
 			preparedStatement = dbConnection.prepareStatement(QueryUtil.getQueryByID(
 					CommonConstants.QUERY_GROUP_TYPE_GENERAL, CommonConstants.QUERY_SELECT_TEACHER_EMAIL_PWD));
 
+			preparedStatement.setString(1, email);
+			
+			
 			ResultSet results = preparedStatement.executeQuery();
 
 			if (!results.next()) {
 				return null;
 			}
 
-			teacher = ModelUtil.getTeacherFromSQLResult(results);
+			password = results.getString(1);
 		} catch (ClassNotFoundException | SQLException e) {
 			log.severe(e.getMessage());
 
@@ -305,7 +312,7 @@ public class TeacherRepository extends RepositoryBase implements ITeacherReposit
 		} finally {
 			releaseResources();
 		}
-		return teacher;
+		return password;
 	}
 
 	@Override

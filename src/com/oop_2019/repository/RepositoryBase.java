@@ -26,7 +26,7 @@ public abstract class RepositoryBase {
 	static {
 		
 		// drop all the tables
-		executeQueryGroup(CommonConstants.QUERY_ID_DROP_SIMS_TABLES);
+//		executeQueryGroup(CommonConstants.QUERY_ID_DROP_SIMS_TABLES);
 		
 		// create all the tables
 		executeQueryGroup(CommonConstants.QUERY_ID_CREATE_SIMS_TABLES);
@@ -66,6 +66,8 @@ public abstract class RepositoryBase {
 			
 			ArrayList<String> queries = QueryUtil.getQueriesByGroup(queryGroupName);
 			statement = dbConnection.createStatement();
+			
+			System.out.println("```````Got queries => " + queries.size());
 			
 			for(String query : queries) {
 				statement.executeUpdate(query);

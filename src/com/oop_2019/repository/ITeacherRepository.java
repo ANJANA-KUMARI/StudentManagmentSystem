@@ -11,7 +11,7 @@ package com.oop_2019.repository;
 public interface ITeacherRepository<T> extends IRepository<T> {
 	
 	int getAdminCount();
-	T get(String email, String password);
+	String getPassword(String email);
 	T get(String email);
 	void create(T entity, String password);
 }
